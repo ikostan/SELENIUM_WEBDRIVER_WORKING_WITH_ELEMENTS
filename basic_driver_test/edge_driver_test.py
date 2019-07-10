@@ -7,7 +7,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_edge_driver_works(self):
 
-        driver = webdriver.Edge(edge_web_driver_path)
+        driver = webdriver.Edge(executable_path=edge_web_driver_path)
         driver.get(test_url)
         title = driver.title
         driver.close()

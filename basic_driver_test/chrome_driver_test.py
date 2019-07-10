@@ -7,7 +7,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_chrome_driver_works(self):
 
-        driver = webdriver.Chrome(chrome_web_driver_path)
+        driver = webdriver.Chrome(executable_path=chrome_web_driver_path)
         driver.get(test_url)
         title = driver.title
         driver.close()
