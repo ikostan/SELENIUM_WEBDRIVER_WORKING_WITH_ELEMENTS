@@ -1,10 +1,10 @@
-from simple_html_elements_for_automation.locators.button_success import ButtonSuccessLocator
+from simple_html_elements_for_automation.tests.locators.button_success_locator import ButtonSuccessLocator
 
 
-class ButtonSuccessLocator:
+class ButtonSuccessPageModel:
 
     def __init__(self, driver):
-        self.driver
+        self.driver = driver
 
     @property
     def url(self):
@@ -28,4 +28,4 @@ class ButtonSuccessLocator:
         returns webpage message
         :return:
         '''
-        return self.driver.find_element(*ButtonSuccessLocator.MESSAGE)
+        return self.driver.find_element(*ButtonSuccessPageModel.MESSAGE)

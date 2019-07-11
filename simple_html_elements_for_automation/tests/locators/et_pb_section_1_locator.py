@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 
-class EtPbSection1:
+class EtPbSection1Locator:
 
     '''
     Contains all elements identifiers

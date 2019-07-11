@@ -1,7 +1,7 @@
-from simple_html_elements_for_automation.locators.et_pb_base_page_locator import EtPbBasePageLocator
+from simple_html_elements_for_automation.tests.locators.et_pb_base_page_locator import EtPbBasePageLocator
 
 
-class EtPbBasePage:
+class EtPbBasePageModel:
 
     def __init__(self, driver):
         self.driver = driver
