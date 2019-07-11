@@ -9,7 +9,9 @@ class MyTestCase(unittest.TestCase):
 
         driver = webdriver.Chrome(executable_path=chrome_web_driver_path)
         driver.get(test_url)
+        url = driver.current_url
         title = driver.title
         driver.close()
+        self.assertEqual(test_url, url)
         self.assertEqual(test_title, title)
 

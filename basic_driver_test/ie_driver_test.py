@@ -10,6 +10,8 @@ class MyTestCase(unittest.TestCase):
         driver = webdriver.Ie(executable_path=ie_web_driver_path)
         driver.get(test_url)
         url = driver.current_url
+        title = driver.title
         driver.close()
         self.assertEqual(test_url, url)
+        self.assertEqual(test_title, title)
 
