@@ -21,7 +21,7 @@ https://courses.ultimateqa.com/courses/take/working-with-elements
 
 ### Problem solving:
 
-- selenium.common.exceptions.WebDriverException: Message: unknown error: cannot find Opera binary
+- **selenium.common.exceptions.WebDriverException: Message: unknown error: cannot find Opera binary**
 
 ```bash
 from selenium.webdriver.opera.options import Options
@@ -34,3 +34,7 @@ driver.get(<url>)
 driver.close()
 ```
 Source: https://stackoverflow.com/questions/52793537/selenium-common-exceptions-webdriverexception-message-unknown-error-cannot-fi
+
+### Useful tools:
+- **ChroPath** generates unique relative xpath, absolute xpath, cssSelectors, linkText and partialLinkText just by one click. ChroPath can also be used as Editor for selectors. It makes easy to write, edit, extract, and evaluate XPath queries on any webpage. ChroPath also supports iframe, multi selectors generation, generate relative xpath with custom attribute, automation script steps generation and many more.
+Source: https://chrome.google.com/webstore/detail/chropath/ljngjbnaijcbncmcnjfhigebomdlkcjo?hl=en
