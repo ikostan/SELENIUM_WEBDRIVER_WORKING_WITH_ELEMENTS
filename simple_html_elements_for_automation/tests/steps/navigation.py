@@ -1,6 +1,6 @@
 from behave import *
 from selenium import webdriver
-from config import chrome_web_driver_path
+from webdriver.path_config import chrome_web_driver_path
 from simple_html_elements_for_automation.tests.page_model.button_success_page import ButtonSuccessPageModel
 from simple_html_elements_for_automation.tests.page_model.et_pb_section_1_page import SectionOnePageModel
 
