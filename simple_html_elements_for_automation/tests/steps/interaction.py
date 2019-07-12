@@ -13,18 +13,18 @@ def step_impl(context):
     :param context:
     :return:
     '''
-    page = SectionOnePageModel(context.driver)
+    page = SectionOnePageModel(context.get_driver)
     page.button_with_id.click()
 
 
 @step("I can identify first Xpath button")
 def step_impl(context):
-    page = EtPbSection3PageModel(context.driver)
+    page = EtPbSection3PageModel(context.get_driver)
     print('{}'.format(len(page.first_btn)))
     assert len(page.x_path_btns) == 1
 
 
 @when('I click on the first one')
 def step_impl(context):
-    page = EtPbSection3PageModel(context.driver)
+    page = EtPbSection3PageModel(context.get_driver)
     page.x_path_btns[0].click()

@@ -1,17 +1,12 @@
 import unittest
-from selenium import webdriver
-from webdriver.path_config import DriverPath
-from selenium.webdriver.opera.options import Options
+from driver.driver import Driver
 
 
 class MyTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        options = Options()
-        options.binary_location = DriverPath.OPERA_BINARY_PATH
-        cls.driver = webdriver.Opera(options=options,
-                                     executable_path=DriverPath.OPERA_WEB_DRIVER_PATH)
+        cls.driver = Driver('opera').get_driver()
         cls.test_url = 'https://www.ultimateqa.com/automation/'
         cls.test_title = 'Automation Practice - Ultimate QA'
 

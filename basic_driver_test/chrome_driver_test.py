@@ -1,13 +1,12 @@
 import unittest
-from selenium import webdriver
-from webdriver.path_config import DriverPath
+from driver.driver import Driver
 
 
 class MyTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.driver = webdriver.Chrome(executable_path=DriverPath.CHROME_WEB_DRIVER_PATH)
+        cls.driver = Driver('chrome').get_driver()
         cls.test_url = 'https://www.ultimateqa.com/automation/'
         cls.test_title = 'Automation Practice - Ultimate QA'
 

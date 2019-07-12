@@ -1,13 +1,12 @@
 import unittest
-from selenium import webdriver
-from webdriver.path_config import DriverPath
+from driver.driver import Driver
 
 
 class MyTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.driver = webdriver.Firefox(executable_path=DriverPath.MOZILLA_WEB_DRIVER_PATH)
+        cls.driver = Driver('mozilla').get_driver()
         cls.test_url = 'https://www.ultimateqa.com/automation/'
         cls.test_title = 'Automation Practice - Ultimate QA'
 
