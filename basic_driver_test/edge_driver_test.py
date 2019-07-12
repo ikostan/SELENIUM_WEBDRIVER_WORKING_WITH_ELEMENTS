@@ -1,13 +1,13 @@
 import unittest
 from selenium import webdriver
-from config import DriverPath
+from webdriver.path_config import DriverPath
 
 
 class MyTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.driver = webdriver.Edge(executable_path=DriverPath.edge_web_driver_path)
+        cls.driver = webdriver.Edge(executable_path=DriverPath.EDGE_WEB_DRIVER_PATH)
         cls.test_url = 'https://www.ultimateqa.com/automation/'
         cls.test_title = 'Automation Practice - Ultimate QA'
 
