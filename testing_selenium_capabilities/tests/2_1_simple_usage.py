@@ -13,7 +13,6 @@ class SimpleUsage(unittest.TestCase):
         cls.test_str = "pycon"
         cls.text_message = "No results found."
         cls.test_title = "Python"
-        #cls.browsers = ['ie', 'chrome', 'edge', 'mozilla', 'opera']
 
     def test_chrome(self):
         self.simple_usage_generic_method('chrome')
