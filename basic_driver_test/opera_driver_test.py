@@ -11,10 +11,14 @@ class MyTestCase(unittest.TestCase):
         options = Options()
         options.binary_location = opera_binary_path
         driver = webdriver.Opera(options=options, executable_path=opera_web_driver_path)
+
+        driver.maximize_window()
         driver.get(test_url)
         url = driver.current_url
         title = driver.title
-        driver.close()
+
         self.assertEqual(test_url, url)
         self.assertEqual(test_title, title)
+
+        driver.close()
 

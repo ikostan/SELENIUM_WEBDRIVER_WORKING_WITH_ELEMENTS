@@ -10,8 +10,6 @@ class MyTestCase(unittest.TestCase):
         driver = webdriver.Ie(executable_path=ie_web_driver_path)
 
         driver.maximize_window()
-        driver.implicitly_wait(30)
-
         driver.get(test_url)
         url = driver.current_url
         title = driver.title
@@ -20,5 +18,4 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(test_title, title)
 
         driver.close()
-        driver.quit()
 

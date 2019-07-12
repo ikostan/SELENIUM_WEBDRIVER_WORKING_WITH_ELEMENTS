@@ -8,10 +8,15 @@ class MyTestCase(unittest.TestCase):
     def test_edge_driver_works(self):
 
         driver = webdriver.Edge(executable_path=edge_web_driver_path)
+
+        driver.maximize_window()
         driver.get(test_url)
         url = driver.current_url
         title = driver.title
-        driver.close()
+
         self.assertEqual(test_url, url)
         self.assertEqual(test_title, title)
+
+        driver.close()
+
 
