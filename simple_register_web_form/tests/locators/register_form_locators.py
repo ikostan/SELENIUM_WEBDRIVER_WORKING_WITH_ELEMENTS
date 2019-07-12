@@ -7,6 +7,9 @@ class RegisterFormLocator:
     Web page: http://demo.automationtesting.in/Register.html
     '''
 
+    # Web page title
+    TITLE = (By.TAG_NAME, 'title')
+
     # First Name field:
     FIRST_NAME_INPUT = (By.XPATH, '/html/body/section/div/div/div[2]/form/div[1]/div[1]/input')
 

@@ -6,6 +6,15 @@ class RegisterPageModel(BasePageModel):
 
     _url = 'Register.html'
 
+    # Web page title
+    @property
+    def title(self):
+        '''
+        returns web page title
+        :return:
+        '''
+        return self.driver.find_element(*RegisterFormLocator.TITLE)
+
     # Register page URL
     @property
     def url(self):

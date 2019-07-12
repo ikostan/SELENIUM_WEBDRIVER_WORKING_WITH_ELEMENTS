@@ -1,6 +1,8 @@
 # Working With Register Web Form
 
 ### HTML elements covered:
+
+- title
 - input
 - text area
 - combo boxes
