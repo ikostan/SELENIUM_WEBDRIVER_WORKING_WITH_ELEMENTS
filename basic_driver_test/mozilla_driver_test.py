@@ -1,21 +1,34 @@
 import unittest
 from selenium import webdriver
-from config import mozilla_web_driver_path, test_title, test_url
+from config import DriverPath
 
 
 class MyTestCase(unittest.TestCase):
 
+    @classmethod
+    def setUpClass(cls):
+        cls.driver = webdriver.Firefox(executable_path=DriverPath.mozilla_web_driver_path)
+        cls.test_url = 'https://www.ultimateqa.com/automation/'
+        cls.test_title = 'Automation Practice - Ultimate QA'
+
     def test_mozilla_driver_works(self):
 
-        driver = webdriver.Firefox(executable_path=mozilla_web_driver_path)
+        # Open a web browser and maximize it
+        self.driver.maximize_window()
+        self.driver.get(self.test_url)
 
-        driver.maximize_window()
-        driver.get(test_url)
-        url = driver.current_url
-        title = driver.title
+        # get current url
+        url = self.driver.current_url
+        # get web page title
+        title = self.driver.title
 
-        self.assertEqual(test_url, url)
-        self.assertEqual(test_title, title)
+        self.assertEqual(self.test_url, url)
+        self.assertEqual(self.test_title, title)
 
-        driver.close()
+    def tearDown(self):
+        self.driver.close()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.driver.quit()
 
