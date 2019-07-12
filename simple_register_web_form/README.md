@@ -1,8 +1,12 @@
 # Working With Register Web Form
 
-### HTML elements covered
+### HTML elements covered:
 - input
-- textarea
+- text area
+- combo boxes
+- buttons
+- checkboxes
+- radio buttons
 
 ### Demo webpage:
 http://demo.automationtesting.in/Register.html
