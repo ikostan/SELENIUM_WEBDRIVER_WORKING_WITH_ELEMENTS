@@ -35,6 +35,15 @@ driver.close()
 ```
 Source: https://stackoverflow.com/questions/52793537/selenium-common-exceptions-webdriverexception-message-unknown-error-cannot-fi
 
+- **Internet Explorer browser window not getting closed in Selenium Webdriver**
+
+```bash
+1. Open IE browser
+2. Go to Internet Options >>> Security
+3. For every zone heck "Enable Protected Mode"
+4. Restart IE
+```
+
 ### Useful tools:
 - **ChroPath** generates unique relative xpath, absolute xpath, cssSelectors, linkText and partialLinkText just by one click. ChroPath can also be used as Editor for selectors. It makes easy to write, edit, extract, and evaluate XPath queries on any webpage. ChroPath also supports iframe, multi selectors generation, generate relative xpath with custom attribute, automation script steps generation and many more.
 Source: https://chrome.google.com/webstore/detail/chropath/ljngjbnaijcbncmcnjfhigebomdlkcjo?hl=en
