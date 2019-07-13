@@ -1,5 +1,5 @@
 from selenium.webdriver.common.keys import Keys
-from driver.driver import Driver
+from drivers.driver import Driver
 import unittest
 
 
@@ -31,7 +31,7 @@ class SimpleUsage(unittest.TestCase):
 
     def simple_usage_generic_method(self, browser_name):
 
-        self.driver = Driver(browser_name).get_driver()  # create a driver object
+        self.driver = Driver(browser_name).get_driver()  # create a drivers object
         self.driver.get(self.test_url)  # open web browser on test web page
         assert self.test_title in self.driver.title  # verify webpage title
 
