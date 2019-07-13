@@ -1,4 +1,4 @@
-from driver.path_config import DriverPath
+from drivers.path_config import DriverPath
 from selenium.webdriver.opera.options import Options
 from selenium import webdriver
 
