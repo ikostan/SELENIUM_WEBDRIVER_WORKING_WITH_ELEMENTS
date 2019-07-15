@@ -14,30 +14,30 @@ class MyTestCase(unittest.TestCase):
     def setUp(self):
         self.driver = None
 
+    @unittest.skip('not ready')
     def test_chrome(self):
         browser = 'chrome'
         self.generic_method(browser)
-        pass
 
+    @unittest.skip('not ready')
     def test_ie(self):
         browser = 'ie'
         self.generic_method(browser)
-        pass
 
+    @unittest.skip('not ready')
     def test_opera(self):
         browser = 'opera'
         self.generic_method(browser)
-        pass
 
+    @unittest.skip('not ready')
     def test_mozilla(self):
         browser = 'mozilla'
         self.generic_method(browser)
-        pass
 
+    @unittest.skip('not ready')
     def test_edge(self):
         browser = 'edge'
         self.generic_method(browser)
-        pass
 
     def generic_method(self, browser):
         self.driver = Driver(browser).get_driver()
