@@ -26,6 +26,10 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     select_by_visible_text, select_by_value, get_attribute,
     find_element_by_name, get_attribute, click
     ```
+    - Drag and drop:<br/>
+    ```
+    ActionChains, drag_and_drop, perform
+    ```
 
 <br/>   
 <div align="center"> 
