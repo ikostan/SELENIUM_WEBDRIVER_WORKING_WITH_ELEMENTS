@@ -34,7 +34,8 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
 <br/> 
 
 ### Note: 
-In order to instantiate webdriver I use Driver class of my own. For more info please look here: https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/tree/master/driver
+In order to instantiate webdriver I use Driver class of my own. For more info please look here:<br/>
+https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/tree/master/drivers
 
 ### Supported browsers:
 - Chrome
