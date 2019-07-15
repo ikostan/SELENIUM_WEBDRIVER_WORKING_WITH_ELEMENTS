@@ -28,7 +28,7 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     ```
     
 <div align="center"> 
-<img width="80%" height="80%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/ezgif.com-video-to-gif.gif" hspace="20">
+<img width="90%" height="90%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/ezgif.com-video-to-gif.gif" hspace="20">
 </div>
 
 ### Note: 
