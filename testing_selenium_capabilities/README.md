@@ -2,6 +2,8 @@
 
 In order to master Selenium + Python3 I decided to go over on "Selenium with Python" documentation and test all basic capabilities with various browsers.
 
+<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/VDG1YQadKcREP24m1O" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/22filling-in-formstestpy-VDG1YQadKcREP24m1O">via GIPHY</a></p>
+
 ### Topics covered:
 
 1. **Getting Started:**
@@ -23,7 +25,8 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     ```
     - Filling in forms:<br/>
     ```
-    click, select_by_index, select_by_visible_text, select_by_value
+    select_by_visible_text, select_by_value, get_attribute,
+    find_element_by_name, get_attribute, click
     ```
 
 ### Note: 
