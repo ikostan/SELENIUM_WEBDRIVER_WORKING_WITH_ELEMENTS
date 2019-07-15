@@ -26,14 +26,12 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     select_by_visible_text, select_by_value, get_attribute,
     find_element_by_name, get_attribute, click
     ```
-    
+
+<br/>   
 <div align="center"> 
 <img width="95%" height="95%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/ezgif.com-video-to-gif.gif" hspace="20">
 </div>
-
-<div style='position:relative; padding-bottom:calc(56.43% + 44px)'>
-<iframe src='https://gfycat.com/ifr/BountifulUnacceptableKusimanse' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe>
-</div>
+<br/> 
 
 ### Note: 
 In order to instantiate webdriver I use Driver class of my own. For more info please look here: https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/tree/master/driver
