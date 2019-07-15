@@ -2,7 +2,9 @@
 
 In order to master Selenium + Python3 I decided to go over on "Selenium with Python" documentation and test all basic capabilities with various browsers.
 
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/VDG1YQadKcREP24m1O" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/22filling-in-formstestpy-VDG1YQadKcREP24m1O">via GIPHY</a></p>
+<div align="center"> 
+<img width="100%" height="100%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/ezgif.com-video-to-gif.gif" hspace="2">
+</div>
 
 ### Topics covered:
 
