@@ -29,7 +29,7 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     
 <div align="center"> 
 <img width="95%" height="95%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/ezgif.com-video-to-gif.gif" hspace="20">
-<iframe src='https://gfycat.com/ifr/ComposedSociableHedgehog' frameborder='0' scrolling='no' allowfullscreen width='640' height='405'></iframe>
+<img width="100%" height="100%" src="https://gfycat.com/ifr/ComposedSociableHedgehog" hspace="20">
 </div>
 
 ### Note: 
