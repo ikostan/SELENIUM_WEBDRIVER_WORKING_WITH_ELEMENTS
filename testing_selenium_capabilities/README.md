@@ -1,9 +1,5 @@
 # Testing Selenium Capabilities
 
-<div align="center"> 
-<img width="80%" height="80%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/ezgif.com-video-to-gif.gif" hspace="20">
-</div>
-
 In order to master Selenium + Python3 I decided to go over on "Selenium with Python" documentation and test all basic capabilities with various browsers.
 
 ### Topics covered:
@@ -30,6 +26,10 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     select_by_visible_text, select_by_value, get_attribute,
     find_element_by_name, get_attribute, click
     ```
+    
+<div align="center"> 
+<img width="80%" height="80%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/ezgif.com-video-to-gif.gif" hspace="20">
+</div>
 
 ### Note: 
 In order to instantiate webdriver I use Driver class of my own. For more info please look here: https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/tree/master/driver
