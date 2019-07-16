@@ -1,6 +1,29 @@
 # SELENIUM WEBDRIVER - WORKING WITH ELEMENTS 
 
 This is ongoing project. The main goal is to practice with various HTML elements and master Selenium.
+['Selenium with Python'](https://selenium-python.readthedocs.io/) official documentation is chosen as a general guide.  
+
+### Dev environment:
+- Python 3.7
+- behave v1.2.6
+- pip v19.1.1
+- pytest 5.0.1
+- selenium 3.141.0
+- PyCharm 2019.1.3 (Community Edition)
+
+### Supported browsers:
+- Chrome
+- IE
+- Firefox
+- Edge
+- Opera
+
+### Note: 
+In order to instantiate webdriver I use Driver class of my own. For more info please look here:<br/>
+https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/tree/master/drivers
+
+###  'Selenium with Python' official documentation webpage:
+https://selenium-python.readthedocs.io
 
 ### Problem solving:
 
