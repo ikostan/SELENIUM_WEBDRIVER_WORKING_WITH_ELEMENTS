@@ -26,18 +26,25 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     select_by_visible_text, select_by_value, get_attribute,
     find_element_by_name, get_attribute, click
     ```
+    <br/>   
+    <div align="center"> 
+    <img width="95%" height="95%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/1.gif" hspace="20">
+    </div>
+    <br/> 
     - Drag and drop:<br/>
     ```
     ActionChains, drag_and_drop, perform
     ```
-    - Moving between windows and frames:<br/>
+    - Moving between windows:<br/>
+    ```switch_to_window, switch_to_default_content```
+    <br/>   
+    <div align="center"> 
+    <img width="95%" height="95%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/2.gif" hspace="20">
+    </div>
+    <br/> 
+    - Moving between frames:<br/>
     ```switch_to_window, switch_to_frame, switch_to_default_content```
 
-<br/>   
-<div align="center"> 
-<img width="95%" height="95%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/ezgif.com-video-to-gif.gif" hspace="20">
-</div>
-<br/> 
 
 ### Note: 
 In order to instantiate webdriver I use Driver class of my own. For more info please look here:<br/>
