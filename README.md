@@ -27,7 +27,7 @@ Source: https://stackoverflow.com/questions/52793537/selenium-common-exceptions-
 4. Restart IE
 ```
 
-- **Test are failed due to slow performance of WebBrowser**<br/>
+- **Test are failed due to slow performance of WebDriver**<br/>
 Explicit wait is used to specify wait condition for a particular element.<br/> 
 Here we define to wait for a certain condition to occur before proceeding further in the code.
 ```bash
