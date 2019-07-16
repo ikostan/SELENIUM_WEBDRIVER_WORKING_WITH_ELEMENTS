@@ -51,18 +51,6 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     - Moving between frames:<br/>
     ```switch_to_frame, switch_to_default_content```
 
-
-### Note: 
-In order to instantiate webdriver I use Driver class of my own. For more info please look here:<br/>
-https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/tree/master/drivers
-
-### Supported browsers:
-- Chrome
-- IE
-- Firefox
-- Edge
-- Opera
-
 ### Switch Between IFrames Using Selenium Python:
 - Detect iframe element:<br/>
 ```iframe = driver.find_elements_by_tag_name('iframe')```
@@ -70,6 +58,3 @@ https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/tree/master/
 ```self.driver.switch_to.frame(iframe)```
 - Every time you need to move back from an IFrame to the parent HTML. Selenium Webdriver provides the following method:<br/>
 ```driver.switch_to.default_content()```
-
-### Documentation webpage:
-https://selenium-python.readthedocs.io
