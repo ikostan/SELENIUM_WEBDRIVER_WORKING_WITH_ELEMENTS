@@ -27,6 +27,18 @@ Source: https://stackoverflow.com/questions/52793537/selenium-common-exceptions-
 4. Restart IE
 ```
 
+- **Test are failed due to slow performance of WebBrowser**<br/>
+Explicit wait is used to specify wait condition for a particular element.<br/> 
+Here we define to wait for a certain condition to occur before proceeding further in the code.
+```bash
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+
+# Wait for element to appear:
+wait = WebDriverWait(self.driver, 10)
+wait.until(ec.title_is(self.new_window_name))
+```
+
 ### Useful tools:
 - **ChroPath** generates unique relative xpath, absolute xpath, cssSelectors, linkText and partialLinkText just by one click. ChroPath can also be used as Editor for selectors. It makes easy to write, edit, extract, and evaluate XPath queries on any webpage. ChroPath also supports iframe, multi selectors generation, generate relative xpath with custom attribute, automation script steps generation and many more.
 Source: https://chrome.google.com/webstore/detail/chropath/ljngjbnaijcbncmcnjfhigebomdlkcjo?hl=en
