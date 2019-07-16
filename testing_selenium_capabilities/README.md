@@ -30,6 +30,8 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     ```
     ActionChains, drag_and_drop, perform
     ```
+    - Moving between windows and frames:<br/>
+    ```switch_to_window, switch_to_frame, switch_to_default_content```
 
 <br/>   
 <div align="center"> 
