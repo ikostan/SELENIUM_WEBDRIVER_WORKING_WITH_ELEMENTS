@@ -3,6 +3,8 @@ import time
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 from drivers.driver import Driver
+from selenium.webdriver.common.by import By
+from selenium.webdriver import ActionChains
 
 
 class MyTestCase(unittest.TestCase):
