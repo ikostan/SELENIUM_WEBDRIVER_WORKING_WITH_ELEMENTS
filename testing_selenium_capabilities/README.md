@@ -38,7 +38,9 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     ```ActionChains, drag_and_drop, perform```
     
     - Moving between windows:<br/>
-    ```switch_to_window, switch_to_default_content```
+    ```switch_to_window, window_handles```<br/>
+    For more info look here:<br/>
+    http://antlong.com/common-operations-working-with-tabs-in-webdriver/
     
     <br/>   
     <div align="center"> 
@@ -47,7 +49,7 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     <br/> 
     
     - Moving between frames:<br/>
-    ```switch_to_window, switch_to_frame, switch_to_default_content```
+    ```switch_to_frame, switch_to_default_content```
 
 
 ### Note: 
