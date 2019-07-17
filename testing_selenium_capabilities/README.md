@@ -17,6 +17,7 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
 
 2. **Navigating:**
     - Interacting with the page:<br/>
+    WebDriver offers a number of ways to find elements.<br/>
     ```
     find_element_by_id, find_element_by_name, find_element_by_xpath, 
     send_keys, Keys.ARROW_LEFT, Keys.ARROW_RIGHT, send_keys
@@ -35,15 +36,17 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     <br/> 
     
     - Drag and drop:<br/>
+    You can use drag and drop, either moving an element by a certain amount, or on to another element.<br/>
     ```ActionChains, drag_and_drop, perform```
     
-        <br/>   
+    <br/>   
     <div align="center"> 
     <img width="95%" height="95%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/3.gif" hspace="20">
     </div>
     <br/> 
     
     - Moving between windows:<br/>
+    WebDriver supports moving between named windows using the “switch_to_window” method.<br/>
     ```switch_to_window, window_handles```<br/>
     For more info look here:<br/>
     http://antlong.com/common-operations-working-with-tabs-in-webdriver/
@@ -55,6 +58,7 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     <br/> 
     
     - Moving between frames:<br/>
+    You can also swing from frame to frame (or into iframes).<br/>
     ```switch_to_frame, switch_to_default_content```
     
     <br/>   
