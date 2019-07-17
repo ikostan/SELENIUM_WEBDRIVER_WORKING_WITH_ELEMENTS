@@ -72,3 +72,9 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     ```alert = driver.switch_to.alert()```   
     <br/>This will return the currently open alert object. With this object, you can now accept, dismiss, read its contents or even type into a prompt. This interface works equally well on alerts, confirms, prompts:<br/>
     ```alert.confirm_box.dismiss(), alert.accept(), alert.text, alert.send_keys("<some text>")```   
+
+    <br/>   
+    <div align="center"> 
+    <img width="95%" height="95%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/5.gif" hspace="20">
+    </div>
+    <br/> 
