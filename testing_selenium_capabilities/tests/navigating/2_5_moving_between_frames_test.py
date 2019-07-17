@@ -71,7 +71,7 @@ class MyTestCase(unittest.TestCase):
         txt_field.send_keys('single iframe')
         time.sleep(1)
         self.assertEqual('single iframe', txt_field.get_attribute('value'))
-        self.driver.switch_to_default_content()
+        self.driver.switch_to.default_content()
 
         # detect button + click on it
         multiple_iframes_btn = self.driver.find_element(By.XPATH, self.multiple_iframes_btn_xpath)
@@ -84,7 +84,7 @@ class MyTestCase(unittest.TestCase):
 
         # detect inner frame + switch to it
         inner_frame = self.driver.find_element(By.XPATH, self.single_inside_multiple_iframe_xpath)
-        self.driver.switch_to_frame(inner_frame)
+        self.driver.switch_to.frame(inner_frame)
 
         # write text (single iframe) inside text field >>>
         # exit iframe
@@ -92,7 +92,7 @@ class MyTestCase(unittest.TestCase):
         txt_field.send_keys('inner iframe')
         time.sleep(1)
         self.assertEqual('inner iframe', txt_field.get_attribute('value'))
-        self.driver.switch_to_default_content()
+        self.driver.switch_to.default_content()
 
         # click on iframe buttons back and forward:
         single_iframe_btn.click()
