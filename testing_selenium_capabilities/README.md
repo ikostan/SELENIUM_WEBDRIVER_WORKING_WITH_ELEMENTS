@@ -4,7 +4,7 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
 
 ### Topics covered:
 
-1. **Getting Started:**
+1. **[Getting Started:](https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/tree/master/testing_selenium_capabilities/tests/simple_usage)**
     - Simple Usage:<br/>
     ```
     assert, driver.title, send_keys, find_element_by_name, clear
@@ -15,7 +15,7 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     self.assertFalse, driver.maximize_window
     ```
 
-2. **Navigating:**
+2. **[Navigating:](https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/tree/master/testing_selenium_capabilities/tests/navigating)**
     - Interacting with the page:<br/>
     WebDriver offers a number of ways to find elements.<br/>
     ```
