@@ -56,3 +56,9 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     
     - Moving between frames:<br/>
     ```switch_to_frame, switch_to_default_content```
+    
+    <br/>   
+    <div align="center"> 
+    <img width="95%" height="95%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/4.gif" hspace="20">
+    </div>
+    <br/> 
