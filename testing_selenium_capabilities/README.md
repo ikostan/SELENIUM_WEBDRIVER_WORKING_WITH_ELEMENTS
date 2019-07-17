@@ -37,6 +37,12 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     - Drag and drop:<br/>
     ```ActionChains, drag_and_drop, perform```
     
+        <br/>   
+    <div align="center"> 
+    <img width="95%" height="95%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/3.gif" hspace="20">
+    </div>
+    <br/> 
+    
     - Moving between windows:<br/>
     ```switch_to_window, window_handles```<br/>
     For more info look here:<br/>
