@@ -66,3 +66,8 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     <img width="95%" height="95%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/4.gif" hspace="20">
     </div>
     <br/> 
+    
+    - Popup dialogs:<br/>
+    Selenium WebDriver has built-in support for handling popup dialog boxes. After you’ve triggered action that would open a popup, you can access the alert with the following:<br/>
+    ```alert = driver.switch_to_alert()```<br/>
+    This will return the currently open alert object. With this object, you can now accept, dismiss, read its contents or even type into a prompt. This interface works equally well on alerts, confirms, prompts.
