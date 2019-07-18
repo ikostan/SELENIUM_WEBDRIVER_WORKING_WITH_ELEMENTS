@@ -3,6 +3,12 @@
 This is ongoing project. The main goal is to practice with various HTML elements and master Selenium.
 ['Selenium with Python'](https://selenium-python.readthedocs.io/) official documentation is chosen as a general guide.  
 
+<br/>   
+<div align="center"> 
+<img width="100%" height="100%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/1.gif" hspace="20">
+</div>
+<br/>
+
 ### Dev environment:
 - Python 3.7
 - behave v1.2.6
