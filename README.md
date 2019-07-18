@@ -62,6 +62,35 @@ wait = WebDriverWait(self.driver, 10)
 wait.until(ec.title_is(self.new_window_name))
 ```
 
+- **How to Get Selenium to Wait for Page Load After a Click:**<br/>
+    It turns out Selenium has a built-in condition called staleness_of, as well as its own wait-for implementation. 
+    Use them, alongside the @contextmanager decorator and the magical-but-slightly-scary yield keyword, and you get:
+
+    ```python
+    from contextlib import contextmanager
+    from selenium.webdriver.support.ui import WebDriverWait 
+    from selenium.webdriver.support.expected_conditions import staleness_of
+    
+    class MySeleniumTest(SomeFunctionalTestClass): 
+      # assumes self.browser is a selenium webdriver
+    
+      @contextmanager
+      def wait_for_page_load(self, timeout=30):
+        old_page = self.browser.find_element_by_tag_name('html')
+        yield
+        WebDriverWait(self.browser, timeout).until(
+          staleness_of(old_page)
+        )
+        
+      def test_stuff(self):
+        # example use
+        with self.wait_for_page_load(timeout=10):
+          self.browser.find_element_by_link_text('a link')
+    ```
+    
+    **Note** that this solution only works for “non-JavaScript” clicks, i.e., clicks that will cause the browser to load a brand new page, and thus load a brand new HTML body element.
+    <br/>Source: https://blog.codeship.com/get-selenium-to-wait-for-page-load/
+
 ### Useful tools:
 - **ChroPath** generates unique relative xpath, absolute xpath, cssSelectors, linkText and partialLinkText just by one click. ChroPath can also be used as Editor for selectors. It makes easy to write, edit, extract, and evaluate XPath queries on any webpage. ChroPath also supports iframe, multi selectors generation, generate relative xpath with custom attribute, automation script steps generation and many more.
 Source: https://chrome.google.com/webstore/detail/chropath/ljngjbnaijcbncmcnjfhigebomdlkcjo?hl=en
