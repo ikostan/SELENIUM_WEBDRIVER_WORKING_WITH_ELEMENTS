@@ -29,7 +29,7 @@ https://selenium-python.readthedocs.io
 
 - **selenium.common.exceptions.WebDriverException: Message: unknown error: cannot find Opera binary**
 
-    ```bash
+    ```python
     from selenium.webdriver.opera.options import Options
     
     options = Options()
@@ -53,7 +53,7 @@ https://selenium-python.readthedocs.io
 - **Test are failed due to slow performance of WebDriver**<br/>
     Explicit wait is used to specify wait condition for a particular element.<br/> 
     Here we define to wait for a certain condition to occur before proceeding further in the code.
-    ```bash
+    ```python
     from selenium.webdriver.support.ui import WebDriverWait
     from selenium.webdriver.support import expected_conditions as ec
     
