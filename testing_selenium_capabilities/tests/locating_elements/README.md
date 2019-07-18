@@ -9,3 +9,11 @@
     from selenium.webdriver.common.by import By
     login_form = driver.find_element(By.ID, 'loginForm')
     ```
+
+2. **Locating by Name**<br/>
+
+3. **Locating by XPath**<br/>
+    XPath is the language used for locating nodes in an XML document. As HTML can be an implementation of XML (XHTML), Selenium users can leverage this powerful language to target elements in their web applications.<br/>
+    
+
+4. **Locating Hyperlinks by Link Text**<br/>
