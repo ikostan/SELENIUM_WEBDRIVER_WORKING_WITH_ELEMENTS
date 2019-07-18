@@ -90,3 +90,18 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     <img width="95%" height="95%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/6.gif" hspace="20">
     </div>
     <br/> 
+    
+    - **Cookies:**<br/>
+    First of all, you need to be on the domain that the cookie will be valid for:<br/>
+    
+    ```python
+    # Go to the correct domain
+    driver.get("http://www.example.com")
+    
+    # Now set the cookie. This one's valid for the entire domain
+    cookie = {‘name’ : ‘foo’, ‘value’ : ‘bar’}
+    driver.add_cookie(cookie)
+    
+    # And now output all the available cookies for the current URL
+    driver.get_cookies()
+    ```
