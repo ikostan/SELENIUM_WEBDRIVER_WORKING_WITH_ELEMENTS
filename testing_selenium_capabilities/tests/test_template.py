@@ -52,6 +52,7 @@ class MyTestCase(unittest.TestCase):
         self.driver = Driver(browser).get_driver()
         self.driver.maximize_window()
         self.driver.get(self.test_url)
+        time.sleep(1)
         self.assertEqual(self.test_url, self.driver.current_url)
         self.assertEqual(self.test_title, self.driver.title)
 
