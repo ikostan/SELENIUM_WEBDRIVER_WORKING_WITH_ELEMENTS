@@ -78,3 +78,15 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     <img width="95%" height="95%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/5.gif" hspace="20">
     </div>
     <br/> 
+    
+    - Navigation: history and location:<br/>
+    WebDriver has a number of smaller, task-focused interfaces, and navigation is a useful task. To navigate to a page, you can use get method:<br/>
+    ```driver.get("http://www.example.com")```
+    <br/>To move backward and forward in your browser’s history:<br/>
+    ```driver.forward(), driver.back()```
+
+    <br/>   
+    <div align="center"> 
+    <img width="95%" height="95%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/6.gif" hspace="20">
+    </div>
+    <br/> 
