@@ -1,6 +1,7 @@
 # Testing Selenium Capabilities
 
-In order to master Selenium + Python3 I decided to go over on "Selenium with Python" documentation and test all basic capabilities with various browsers.
+In order to master Selenium + Python3 I decided to go over on "Selenium with Python" documentation and test all basic capabilities with various browsers.<br/>
+For more info click on one of the items listed below.
 
 ### Topics covered:
 
