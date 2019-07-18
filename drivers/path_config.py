@@ -14,7 +14,7 @@ class DriverPath:
 
     IE_WEB_DRIVER_PATH = 'C:\\Users\\superadmin\\Desktop\\Python\\selenium\\' \
                          'SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS\\drivers\\' \
-                         'IE_Driver_Server\\x64\\3.14.0\\IEDriverServer.exe'
+                         'IE_Driver_Server\\x86\\3.14.0\\IEDriverServer.exe'
 
     OPERA_WEB_DRIVER_PATH = r'C:\\Users\\superadmin\\Desktop\\Python\\selenium\\' \
                             'SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS\\drivers\\' \
