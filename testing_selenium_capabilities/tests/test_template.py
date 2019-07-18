@@ -44,8 +44,16 @@ class MyTestCase(unittest.TestCase):
         self.generic_method(browser)
 
     def generic_method(self, browser):
-        self.driver = Driver(browser).get_driver()
+        self.open_test_web_page(browser)
         pass
+
+    def open_test_web_page(self, browser):
+        # Open test web page and verify URL + Title
+        self.driver = Driver(browser).get_driver()
+        self.driver.maximize_window()
+        self.driver.get(self.test_url)
+        self.assertEqual(self.test_url, self.driver.current_url)
+        self.assertEqual(self.test_title, self.driver.title)
 
     def tearDown(self):
         self.driver.close()
