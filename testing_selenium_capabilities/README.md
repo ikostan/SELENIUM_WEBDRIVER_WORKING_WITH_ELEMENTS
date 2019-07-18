@@ -92,8 +92,7 @@ In order to master Selenium + Python3 I decided to go over on "Selenium with Pyt
     <br/> 
     
     - **Cookies:**<br/>
-    First of all, you need to be on the domain that the cookie will be valid for:<br/>
-    
+    First of all, you need to be on the domain that the cookie will be valid for:<br/>   
     ```python
     # Go to the correct domain
     driver.get("http://www.example.com")
