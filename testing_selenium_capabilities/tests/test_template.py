@@ -50,8 +50,8 @@ class MyTestCase(unittest.TestCase):
     def open_test_web_page(self, browser):
         # Open test web page and verify URL + Title
         self.driver = Driver(browser).get_driver()
-        self.driver.maximize_window()
         self.driver.get(self.test_url)
+        self.driver.maximize_window()
         time.sleep(1)
         self.assertEqual(self.test_url, self.driver.current_url)
         self.assertEqual(self.test_title, self.driver.title)
