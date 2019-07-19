@@ -33,6 +33,7 @@ class SimpleUsage(unittest.TestCase):
 
         self.driver = Driver(browser_name).get_driver()  # create a drivers object
         self.driver.get(self.test_url)  # open web browser on test web page
+        self.driver.maximize_window()
         assert self.test_title in self.driver.title  # verify webpage title
 
         elem = self.driver.find_element_by_name(self.test_name)  # finds HTML element by name
