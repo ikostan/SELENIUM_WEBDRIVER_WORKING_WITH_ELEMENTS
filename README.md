@@ -106,6 +106,17 @@ https://selenium-python.readthedocs.io
     5. For Windows 10, you also need to set *"Change the size of text, apps, and other items"* to 100% in display settings.<br/>
     6. For IE 11 only, you will need to set a registry entry on the target computer so that the driver can maintain a connection to the instance of Internet Explorer it creates. For 32-bit Windows installations, the key you must examine in the registry editor is *HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BFCACHE*. For 64-bit Windows installations, the key is *HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BFCACHE*. Please note that the *FEATURE_BFCACHE* subkey may or may not be present, and should be created if it is not present. Important: Inside this key, create a *DWORD* value named *iexplore.exe* with the value of *0*.<br/>
 
+- **NoSuchWindowException in IE 11:**<br/>
+
+    1. IE Options --> Security Tab -> Uncheck "Enable Protected Mode".
+    2. Add http://localhost/ to your trusted sites in IE11. 
+    3. Registry keys:
+    <br/>For 64-bit Windows installations, the key is:<br/> 
+    ``` HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Internet explorer\Main\FeatureControl\FEATURE_BFCACHE```
+    <br/>For 32-bit Windows installations, the key is:<br/> 
+    ```HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BFCACHE```
+     
+    <br/>Source: https://stackoverflow.com/questions/24746777/selenium-nosuchwindowexception-in-ie-11
 
 ### Useful tools:
 - **ChroPath** generates unique relative xpath, absolute xpath, cssSelectors, linkText and partialLinkText just by one click. ChroPath can also be used as Editor for selectors. It makes easy to write, edit, extract, and evaluate XPath queries on any webpage. ChroPath also supports iframe, multi selectors generation, generate relative xpath with custom attribute, automation script steps generation and many more.<br/>
