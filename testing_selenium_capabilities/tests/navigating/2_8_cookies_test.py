@@ -39,8 +39,8 @@ class MyTestCase(unittest.TestCase):
 
         # Go to the correct domain
         self.driver = Driver(browser).get_driver()
-        self.driver.maximize_window()
         self.driver.get(self.test_url)
+        self.driver.maximize_window()
         self.assertEqual(self.test_url, self.driver.current_url)
 
         # Now set the cookie. This one's valid for the entire domain
