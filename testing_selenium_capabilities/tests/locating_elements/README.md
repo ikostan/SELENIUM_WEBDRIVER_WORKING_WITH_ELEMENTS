@@ -1,5 +1,3 @@
-### Topics covered:
-    
 **[Locating Elements:](https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/tree/master/testing_selenium_capabilities/tests/locating_elements)**
 <br/>There are various strategies to locate elements in a page. You can use the most appropriate one for your case.
 
