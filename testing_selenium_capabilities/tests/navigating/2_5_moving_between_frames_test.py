@@ -47,10 +47,11 @@ class MyTestCase(unittest.TestCase):
         self.generic_method(browser)
 
     def generic_method(self, browser):
+
         # Launch webdriver on test web page + maximize window:
         self.driver = Driver(browser).get_driver()
-        self.driver.maximize_window()
         self.driver.get(self.url)
+        self.driver.maximize_window()
 
         # Verify page title + url
         self.assertEqual(self.window_name, self.driver.title)
