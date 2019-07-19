@@ -11,6 +11,10 @@
     ```
 
 2. **Locating by Name**<br/>
+    Use this when you know name attribute of an element. With this strategy, the first element with the name attribute value matching the location will be returned. If no element has a matching name attribute, a NoSuchElementException will be raised.<br/>
+    ```python
+    login_btn = self.driver.find_element(By.NAME, 'login')
+    ```
 
 3. **Locating by XPath**<br/>
     XPath is the language used for locating nodes in an XML document. As HTML can be an implementation of XML (XHTML), Selenium users can leverage this powerful language to target elements in their web applications.<br/>
