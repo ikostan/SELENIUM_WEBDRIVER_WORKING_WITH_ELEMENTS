@@ -14,6 +14,8 @@ class MyTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.driver = None
+        cls.test_url = ''
+        cls.test_title = ''
 
     def setUp(self):
         self.driver = None
