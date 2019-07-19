@@ -42,8 +42,8 @@ class MyTestCase(unittest.TestCase):
     def using_find_element_func(self, browser):
 
         self.driver = Driver(browser).get_driver()
-        self.driver.maximize_window()
         self.driver.get(self.test_url)
+        self.driver.maximize_window()
 
         # 1. find element by id.
         # If nothing can be found, a NoSuchElementException will be raised.
