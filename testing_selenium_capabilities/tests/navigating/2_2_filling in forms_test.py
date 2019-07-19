@@ -47,8 +47,8 @@ class MyTestCase(unittest.TestCase):
 
         # Open web browser and verify page title:
         self.driver = Driver(browser).get_driver()
-        self.driver.maximize_window()
         self.driver.get(self.url)
+        self.driver.maximize_window()
 
         self.assertEqual(self.title, self.driver.title)
 
