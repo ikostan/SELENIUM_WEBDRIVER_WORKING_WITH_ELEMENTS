@@ -38,6 +38,12 @@ There are two private methods which might be useful with locators in page object
     login_btn = self.driver.find_element(By.NAME, 'login')
     ```
 
+    <br/>   
+    <div align="center"> 
+    <img width="95%" height="95%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/7.gif" hspace="20">
+    </div>
+    <br/> 
+
 3. **Locating by XPath**<br/>
     XPath is the language used for locating nodes in an XML document. As HTML can be an implementation of XML (XHTML), Selenium users can leverage this powerful language to target elements in their web applications.<br/>
     
