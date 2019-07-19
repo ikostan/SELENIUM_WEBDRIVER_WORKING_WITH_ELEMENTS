@@ -37,8 +37,8 @@ class MyTestCase(unittest.TestCase):
 
     def generic_method(self, browser):
         self.driver = Driver(browser).get_driver()
-        self.driver.maximize_window()
         self.driver.get(self.test_url)
+        self.driver.maximize_window()
 
         self.assertEqual(self.test_url, self.driver.current_url)
 
