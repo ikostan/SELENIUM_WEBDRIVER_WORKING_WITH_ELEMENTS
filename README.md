@@ -17,11 +17,11 @@ This is ongoing project. The main goal is to practice with various HTML elements
 - selenium 3.141.0
 - PyCharm 2019.1.3 (Community Edition)
 
-### Supported browsers:
-- Chrome
-- IE
-- Firefox
-- Edge
+### Supported/tested browsers:
+- Chrome: v75 (64 bit)
+- IE: v11 (64 bit)
+- Firefox: v68 (64  bit)
+- Edge: v17 and above
 - Opera
 
 ### Note: 
