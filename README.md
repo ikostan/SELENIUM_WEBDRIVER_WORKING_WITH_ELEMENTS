@@ -16,6 +16,7 @@ This is ongoing project. The main goal is to practice with various HTML elements
 - pytest 5.0.1
 - selenium 3.141.0
 - PyCharm 2019.1.3 (Community Edition)
+- Win 10 (64 bit)
 
 ### Supported/tested browsers:
 - Chrome: v75 (64 bit)
