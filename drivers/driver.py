@@ -1,7 +1,9 @@
 from drivers.path_config import DriverPath
+from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.opera.options import Options
 from selenium import webdriver
 import platform
+import os
 
 
 class Driver:
@@ -40,7 +42,13 @@ class Driver:
             self.driver = webdriver.Ie(executable_path=self._driver_path[self.browser])
 
         if self.browser == 'mozilla':
-            self.driver = webdriver.Firefox(executable_path=self._driver_path[self.browser])
+            try:
+                self.driver = webdriver.Firefox()
+            except WebDriverException as e:
+                print('\nPlease note:', e.msg)
+                path = self._get_driver_path()
+                print('Trying to look for a \'geckodriver\' under:\n{}'.format(path))
+                self.driver = webdriver.Firefox(executable_path=path)
 
         if self.browser == 'edge':
 
@@ -58,7 +66,22 @@ class Driver:
                     'webdriver-w3c-recommendation-feature-on-demand/#Rg8g2hRfjBQQVRXy.97\n'))
                 self.driver = webdriver.Edge()
             else:
-                self.driver = webdriver.Edge(executable_path=self._driver_path[self.browser])
+                path = self._get_driver_path()
+                print('Trying to look for a \'MicrosoftWebDriver\' under:\n{}'.format(path))
+                self.driver = webdriver.Edge(executable_path=path)
+
+    @staticmethod
+    def _get_root_dir():
+        root_dir = os.path.dirname(os.path.realpath(__file__)).split('\\')
+        dir_list = [str(i) for i in root_dir]
+        root_dir_index = dir_list.index(
+            "SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS")
+        root = '\\'.join(root_dir[:root_dir_index + 1])
+        print('ROOT DIR:\n', root)
+        return root
+
+    def _get_driver_path(self):
+        return self._get_root_dir() + self._driver_path[self.browser]
 
     def get_driver(self):
         return self.driver
