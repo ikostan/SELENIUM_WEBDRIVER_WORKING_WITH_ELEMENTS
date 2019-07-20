@@ -45,7 +45,13 @@ class Driver:
                 self.driver = webdriver.Chrome(executable_path=path)
 
         if self.browser == 'ie':
-            self.driver = webdriver.Ie(executable_path=self._driver_path[self.browser])
+            try:
+                self.driver = webdriver.Ie()
+            except WebDriverException as e:
+                print('\nPlease note:', e.msg)
+                path = self._get_driver_path()
+                print('Trying to look for a \'IEDriverServer\' under:\n{}'.format(path))
+                self.driver = webdriver.Ie(executable_path=path)
 
         if self.browser == 'mozilla':
             try:
@@ -80,10 +86,9 @@ class Driver:
     def _get_root_dir():
         root_dir = os.path.dirname(os.path.realpath(__file__)).split('\\')
         dir_list = [str(i) for i in root_dir]
-        root_dir_index = dir_list.index(
-            "SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS")
+        root_dir_index = dir_list.index("SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS")
         root = '\\'.join(root_dir[:root_dir_index + 1])
-        print('ROOT DIR:\n',root)
+        print('ROOT DIR:\n', root)
         return root
 
     def _get_driver_path(self):
