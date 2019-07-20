@@ -21,7 +21,6 @@ class SimpleUsage(unittest.TestCase):
     def test_edge(self):
         self.simple_usage_generic_method('edge')
 
-    @unittest.skip('not ready')
     def test_ie(self):
         self.simple_usage_generic_method('ie')
 
