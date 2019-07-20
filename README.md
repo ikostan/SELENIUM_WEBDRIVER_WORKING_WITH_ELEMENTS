@@ -33,6 +33,20 @@ https://selenium-python.readthedocs.io
 
 ### Problem solving:
 
+- **Microsoft webdriver for edge 18 and above:**<br/>
+    MS made WebDriver a Windows Feature on Demand (FoD), which ensures that it’s always up to date automatically, and enables some new ways to get Microsoft WebDriver.<br/>
+    
+    The simplest way to get started is simply to enable Developer Mode. Simply open the Settings app and go to “Update & Security,” “For developers,” and select “Developer Mode.” The appropriate version of WebDriver will be automatically installed.<br/>
+    
+    You can also install a standalone version of WebDriver in one of two ways:<br/>
+    * Search “Manage optional features” from Start, then select “Add a Feature,” “WebDriver.”<br/>
+    * Install via DISM by running the following command in an elevated command prompt:
+    <br/>```DISM.exe /Online /Add-Capability /CapabilityName:Microsoft.WebDriver~~~~0.0.1.0```<br/>
+    
+    This also means that we will no longer be providing standalone downloads for Microsoft WebDriver going forward<br/>
+    
+    Source: https://blogs.windows.com/msedgedev/2018/06/14/webdriver-w3c-recommendation-feature-on-demand/#Rg8g2hRfjBQQVRXy.97
+    
 - **selenium.common.exceptions.WebDriverException: Message: unknown error: cannot find Opera binary**
 
     ```python
