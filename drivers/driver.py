@@ -7,6 +7,7 @@ import platform
 class Driver:
 
     _driver_path = {
+        
         'chrome': DriverPath.CHROME_WEB_DRIVER_PATH,
         'ie': DriverPath.IE_WEB_DRIVER_PATH,
         'opera': DriverPath.OPERA_WEB_DRIVER_PATH,
