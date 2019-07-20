@@ -46,7 +46,7 @@ class Driver:
 
             # Purpose:	Probe the underlying platform’s hardware, operating system,
             # and interpreter version information.
-            
+
             # print('Version tuple:', platform.python_version_tuple())
             # print('Compiler     :', platform.python_compiler())
             # print('Build        :', platform.python_build())
