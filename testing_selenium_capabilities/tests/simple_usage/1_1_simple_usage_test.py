@@ -15,7 +15,6 @@ class SimpleUsage(unittest.TestCase):
         cls.text_message = "No results found."
         cls.test_title = "Python"
 
-    @unittest.skip('not ready')
     def test_chrome(self):
         self.simple_usage_generic_method('chrome')
 
