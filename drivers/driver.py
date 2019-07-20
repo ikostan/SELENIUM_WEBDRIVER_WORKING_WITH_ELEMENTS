@@ -36,7 +36,13 @@ class Driver:
                                           executable_path=self._driver_path[self.browser])
 
         if self.browser == 'chrome':
-            self.driver = webdriver.Chrome(executable_path=self._driver_path[self.browser])
+            try:
+                self.driver = webdriver.Chrome()
+            except WebDriverException as e:
+                print('\nPlease note:', e.msg)
+                path = self._get_driver_path()
+                print('Trying to look for a \'chromedriver\' under:\n{}'.format(path))
+                self.driver = webdriver.Chrome(executable_path=path)
 
         if self.browser == 'ie':
             self.driver = webdriver.Ie(executable_path=self._driver_path[self.browser])
@@ -77,7 +83,7 @@ class Driver:
         root_dir_index = dir_list.index(
             "SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS")
         root = '\\'.join(root_dir[:root_dir_index + 1])
-        print('ROOT DIR:\n', root)
+        print('ROOT DIR:\n',root)
         return root
 
     def _get_driver_path(self):
