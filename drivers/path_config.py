@@ -6,9 +6,7 @@ class DriverPath:
 
     MOZILLA_WEB_DRIVER_PATH = '\\drivers\\mozilla_geckodriver\\v0.24.0\\win64\\geckodriver.exe'
 
-    IE_WEB_DRIVER_PATH = 'C:\\Users\\superadmin\\Desktop\\Python\\selenium\\' \
-                         'SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS\\drivers\\' \
-                         'IE_Driver_Server\\x86\\3.14.0\\IEDriverServer.exe'
+    IE_WEB_DRIVER_PATH = '\\drivers\\IE_Driver_Server\\x86\\3.14.0\\IEDriverServer.exe'
 
     OPERA_WEB_DRIVER_PATH = r'C:\\Users\\superadmin\\Desktop\\Python\\selenium\\' \
                             r'SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS\\drivers\\' \
