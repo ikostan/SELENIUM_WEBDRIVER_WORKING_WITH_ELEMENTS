@@ -27,7 +27,6 @@ class SimpleUsage(unittest.TestCase):
     def test_mozilla(self):
         self.simple_usage_generic_method('mozilla')
 
-    @unittest.skip('not ready')
     def test_opera(self):
         self.simple_usage_generic_method('opera')
 
