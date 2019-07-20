@@ -1,6 +1,7 @@
 from drivers.path_config import DriverPath
 from selenium.webdriver.opera.options import Options
 from selenium import webdriver
+import platform
 
 
 class Driver:
@@ -41,6 +42,10 @@ class Driver:
             self.driver = webdriver.Firefox(executable_path=self._driver_path[self.browser])
 
         if self.browser == 'edge':
+            print('Version      :', platform.python_version())
+            print('Version tuple:', platform.python_version_tuple())
+            print('Compiler     :', platform.python_compiler())
+            print('Build        :', platform.python_build())
             self.driver = webdriver.Edge(executable_path=self._driver_path[self.browser])
 
     def get_driver(self):
