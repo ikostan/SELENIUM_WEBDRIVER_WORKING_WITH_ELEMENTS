@@ -42,11 +42,15 @@ class Driver:
             self.driver = webdriver.Firefox(executable_path=self._driver_path[self.browser])
 
         if self.browser == 'edge':
-            print('Version      :', platform.python_version())
             # print('Version tuple:', platform.python_version_tuple())
             # print('Compiler     :', platform.python_compiler())
             # print('Build        :', platform.python_build())
             if sum(int(i) for i in platform.python_version_tuple()) > 13:
+                print('\nVersion:', platform.python_version())
+                print('WebDriver is now a Feature On Demand')
+                print('For more info please check: {}'.format(
+                    'https://blogs.windows.com/msedgedev/2018/06/14/'
+                    'webdriver-w3c-recommendation-feature-on-demand/#Rg8g2hRfjBQQVRXy.97\n'))
                 self.driver = webdriver.Edge()
             else:
                 self.driver = webdriver.Edge(executable_path=self._driver_path[self.browser])
