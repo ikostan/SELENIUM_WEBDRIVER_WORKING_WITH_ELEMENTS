@@ -1,8 +1,6 @@
 class DriverPath:
 
-    CHROME_WEB_DRIVER_PATH = 'C:\\Users\\superadmin\\Desktop\\Python\\selenium\\' \
-                             'SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS\\drivers\\' \
-                             'chrome\\win32\\74.0.3729.6\\chromedriver.exe'
+    CHROME_WEB_DRIVER_PATH = '\\drivers\\chrome\\win32\\74.0.3729.6\\chromedriver.exe'
 
     EDGE_WEB_DRIVER_PATH = '\\drivers\\microsoft_edge\\release_17134\\MicrosoftWebDriver.exe'
 
