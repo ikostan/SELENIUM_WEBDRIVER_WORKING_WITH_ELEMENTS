@@ -8,7 +8,7 @@ class DriverPath:
 
     IE_WEB_DRIVER_PATH = '\\drivers\\IE_Driver_Server\\x86\\3.14.0\\IEDriverServer.exe'
 
-    OPERA_WEB_DRIVER_PATH = r'\\drivers\\opera\\win_64\\2.45\\operadriver.exe'
+    OPERA_WEB_DRIVER_PATH = '\\drivers\\opera\\win_64\\2.45\\operadriver.exe'
 
     OPERA_BINARY_PATH = r'C:\\Users\\superadmin\\AppData\\Local\\' \
                         r'Programs\\Opera\\60.0.3255.95\\opera.exe'
