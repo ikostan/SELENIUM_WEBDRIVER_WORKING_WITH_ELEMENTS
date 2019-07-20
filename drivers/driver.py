@@ -7,7 +7,7 @@ import platform
 class Driver:
 
     _driver_path = {
-        
+
         'chrome': DriverPath.CHROME_WEB_DRIVER_PATH,
         'ie': DriverPath.IE_WEB_DRIVER_PATH,
         'opera': DriverPath.OPERA_WEB_DRIVER_PATH,
@@ -43,6 +43,10 @@ class Driver:
             self.driver = webdriver.Firefox(executable_path=self._driver_path[self.browser])
 
         if self.browser == 'edge':
+
+            # Purpose:	Probe the underlying platform’s hardware, operating system,
+            # and interpreter version information.
+            
             # print('Version tuple:', platform.python_version_tuple())
             # print('Compiler     :', platform.python_compiler())
             # print('Build        :', platform.python_build())
