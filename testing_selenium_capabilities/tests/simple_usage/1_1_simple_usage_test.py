@@ -7,6 +7,7 @@ class SimpleUsage(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
+
         cls.driver = None
         cls.test_url = "http://www.python.org"
         cls.test_name = 'q'
@@ -14,18 +15,21 @@ class SimpleUsage(unittest.TestCase):
         cls.text_message = "No results found."
         cls.test_title = "Python"
 
+    @unittest.skip('not ready')
     def test_chrome(self):
         self.simple_usage_generic_method('chrome')
 
     def test_edge(self):
         self.simple_usage_generic_method('edge')
 
+    @unittest.skip('not ready')
     def test_ie(self):
         self.simple_usage_generic_method('ie')
 
     def test_mozilla(self):
         self.simple_usage_generic_method('mozilla')
 
+    @unittest.skip('not ready')
     def test_opera(self):
         self.simple_usage_generic_method('opera')
 
@@ -44,7 +48,8 @@ class SimpleUsage(unittest.TestCase):
         assert self.text_message not in self.driver.page_source  # look for test message
 
     def tearDown(self):
-        self.driver.close()
+        if self.driver is not None:
+            self.driver.close()
 
     @classmethod
     def tearDownClass(cls):
