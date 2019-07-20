@@ -43,10 +43,13 @@ class Driver:
 
         if self.browser == 'edge':
             print('Version      :', platform.python_version())
-            print('Version tuple:', platform.python_version_tuple())
-            print('Compiler     :', platform.python_compiler())
-            print('Build        :', platform.python_build())
-            self.driver = webdriver.Edge(executable_path=self._driver_path[self.browser])
+            # print('Version tuple:', platform.python_version_tuple())
+            # print('Compiler     :', platform.python_compiler())
+            # print('Build        :', platform.python_build())
+            if sum(int(i) for i in platform.python_version_tuple()) > 13:
+                self.driver = webdriver.Edge()
+            else:
+                self.driver = webdriver.Edge(executable_path=self._driver_path[self.browser])
 
     def get_driver(self):
         return self.driver
