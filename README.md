@@ -22,7 +22,7 @@ This is ongoing project. The main goal is to practice with various HTML elements
 - IE: v11 (64 bit)
 - Firefox: v68 (64  bit)
 - Edge: v17 and above
-- Opera
+- Opera: v60
 
 ### Note: 
 In order to instantiate webdriver I use Driver class of my own. For more info please look here:<br/>
