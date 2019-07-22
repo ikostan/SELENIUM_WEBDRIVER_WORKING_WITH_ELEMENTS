@@ -32,6 +32,18 @@ https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/tree/master/
 ###  'Selenium with Python' official documentation webpage:
 https://selenium-python.readthedocs.io
 
+### PyCharm: Choosing Your Testing Framework: <br/>
+
+1. Open the Settings/Preferences dialog, and under the node Tools, click the page Python Integrated Tools.<br/>
+2. On this page, click the Default Test Runner field.<br/>
+3. Choose the desired test runner:<br/>
+
+<br/>   
+<div align="center"> 
+<img width="100%" height="100%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/py_choosing_test_runner.png" hspace="20">
+</div>
+<br/>
+
 ### Problem solving:
 
 - **Microsoft webdriver for edge 18 and above:**<br/>
