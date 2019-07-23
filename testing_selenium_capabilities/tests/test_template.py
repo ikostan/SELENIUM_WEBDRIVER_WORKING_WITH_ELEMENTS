@@ -67,6 +67,7 @@ class MyTestCase(unittest.TestCase):
     def tearDown(self):
         self.driver.stop_client()
         self.driver.close()
+        time.sleep(1)
 
     @classmethod
     def tearDownClass(cls):
