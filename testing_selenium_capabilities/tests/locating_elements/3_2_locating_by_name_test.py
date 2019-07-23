@@ -20,6 +20,9 @@ class MyTestCase(unittest.TestCase):
         cls.test_login_title = 'Sign-on: Mercury Tours'
 
     def setUp(self):
+        if self.driver is not None:
+            self.driver.quit()
+
         self.driver = None
 
     def test_chrome(self):
