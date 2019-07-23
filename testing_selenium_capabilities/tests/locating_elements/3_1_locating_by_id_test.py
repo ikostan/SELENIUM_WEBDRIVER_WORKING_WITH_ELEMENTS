@@ -94,7 +94,11 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(self.test_title, self.driver.title)
 
     def tearDown(self):
-        self.driver.close()
+        for handle in self.driver.window_handles:
+            self.driver.switch_to.window(handle)
+            self.driver.stop_client()
+            self.driver.close()
+        time.sleep(1)
 
     @classmethod
     def tearDownClass(cls):
