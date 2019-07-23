@@ -1,5 +1,8 @@
 import unittest
 from drivers.driver import Driver
+import time
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class MyTestCase(unittest.TestCase):
@@ -15,6 +18,9 @@ class MyTestCase(unittest.TestCase):
         # Open a web browser and maximize it
         self.driver.maximize_window()
         self.driver.get(self.test_url)
+
+        # Explicit wait for page title
+        WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.test_title))
 
         # get current url
         url = self.driver.current_url
