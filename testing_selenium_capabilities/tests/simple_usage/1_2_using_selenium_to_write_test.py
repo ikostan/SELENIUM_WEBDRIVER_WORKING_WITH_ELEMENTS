@@ -2,6 +2,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from drivers.driver import Driver
 import unittest
+import time
 
 
 # The test case class is inherited from unittest.TestCase.
@@ -69,7 +70,11 @@ class MyTestCase(unittest.TestCase):
         runs after each test method
         :return:
         '''
-        self.driver.close()
+        for handle in self.driver.window_handles:
+            self.driver.switch_to.window(handle)
+            self.driver.stop_client()
+            self.driver.close()
+        time.sleep(1)
 
     @classmethod
     def tearDownClass(cls):
