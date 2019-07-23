@@ -51,7 +51,9 @@ class MyTestCase(unittest.TestCase):
         self.driver.maximize_window()
         self.driver.get(self.jscript_alerts_url)
 
-        self.driver.refresh()
+        if browser == "chrome":
+            self.driver.refresh()
+
         WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.jscript_alerts_title))
 
         # Verify URL + Title
