@@ -18,6 +18,9 @@ class MyTestCase(unittest.TestCase):
         cls.test_title = ''
 
     def setUp(self):
+        if self.driver is not None:
+            self.driver.quit()
+
         self.driver = None
 
     @unittest.skip('not ready')
@@ -54,11 +57,15 @@ class MyTestCase(unittest.TestCase):
         self.driver = Driver(browser).get_driver()
         self.driver.get(self.test_url)
         self.driver.maximize_window()
+
+        WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
         time.sleep(1)
+
         self.assertEqual(self.test_url, self.driver.current_url)
         self.assertEqual(self.test_title, self.driver.title)
 
     def tearDown(self):
+        self.driver.stop_client()
         self.driver.close()
 
     @classmethod
