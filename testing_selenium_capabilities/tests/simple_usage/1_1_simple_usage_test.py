@@ -15,6 +15,12 @@ class SimpleUsage(unittest.TestCase):
         cls.text_message = "No results found."
         cls.test_title = "Python"
 
+    def setUp(self):
+        if self.driver is not None:
+            self.driver.quit()
+
+        self.driver = None
+
     def test_chrome(self):
         self.simple_usage_generic_method('chrome')
 
