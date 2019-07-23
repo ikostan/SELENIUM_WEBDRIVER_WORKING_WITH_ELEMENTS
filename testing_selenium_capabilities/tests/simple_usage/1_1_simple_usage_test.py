@@ -1,6 +1,7 @@
 from selenium.webdriver.common.keys import Keys
 from drivers.driver import Driver
 import unittest
+import time
 
 
 class SimpleUsage(unittest.TestCase):
@@ -51,8 +52,11 @@ class SimpleUsage(unittest.TestCase):
         assert self.text_message not in self.driver.page_source  # look for test message
 
     def tearDown(self):
-        if self.driver is not None:
+        for handle in self.driver.window_handles:
+            self.driver.switch_to.window(handle)
+            self.driver.stop_client()
             self.driver.close()
+        time.sleep(1)
 
     @classmethod
     def tearDownClass(cls):
