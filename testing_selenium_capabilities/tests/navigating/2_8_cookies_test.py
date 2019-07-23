@@ -13,6 +13,9 @@ class MyTestCase(unittest.TestCase):
         cls.page_title_xpath = '/html/body/div/h1'
 
     def setUp(self):
+        if self.driver is not None:
+            self.driver.quit()
+
         self.driver = None
 
     def test_chrome(self):
