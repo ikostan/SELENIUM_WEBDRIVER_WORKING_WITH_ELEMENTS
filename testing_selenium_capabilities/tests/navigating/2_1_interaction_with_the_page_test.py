@@ -1,6 +1,8 @@
 import unittest
 import time
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.keys import Keys
 from drivers.driver import Driver
 
@@ -11,6 +13,7 @@ class MyTestCase(unittest.TestCase):
     def setUpClass(cls):
         cls.driver = None
         cls.test_url = "https://www.google.com/doodles/"
+        cls.test_title = 'Google Doodle'
         cls.id = 'passwd-id'
         cls.name = 'passwd'
         cls.xpath = '//input[@id=\'passwd-id\']'
@@ -48,6 +51,8 @@ class MyTestCase(unittest.TestCase):
         self.driver.get(self.test_url)
         self.driver.maximize_window()
 
+        WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
+
         # 1. find element by id.
         # If nothing can be found, a NoSuchElementException will be raised.
         with self.assertRaises(NoSuchElementException):
@@ -78,7 +83,9 @@ class MyTestCase(unittest.TestCase):
         search_field.clear()
 
     def tearDown(self):
+        self.driver.stop_client()
         self.driver.close()
+        time.sleep(1)
 
     @classmethod
     def tearDownClass(cls):
