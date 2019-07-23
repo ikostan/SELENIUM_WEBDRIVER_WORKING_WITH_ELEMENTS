@@ -51,6 +51,9 @@ class MyTestCase(unittest.TestCase):
         self.driver.maximize_window()
         self.driver.get(self.jscript_alerts_url)
 
+        self.driver.refresh()
+        WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.jscript_alerts_title))
+
         # Verify URL + Title
         self.assertEqual(self.jscript_alerts_url, self.driver.current_url)
         self.assertEqual(self.jscript_alerts_title, self.driver.title)
@@ -139,7 +142,11 @@ class MyTestCase(unittest.TestCase):
         time.sleep(1)
 
     def tearDown(self):
-        self.driver.close()
+        for handle in self.driver.window_handles:
+            self.driver.switch_to.window(handle)
+            self.driver.stop_client()
+            self.driver.close()
+        time.sleep(1)
 
     @classmethod
     def tearDownClass(cls):
