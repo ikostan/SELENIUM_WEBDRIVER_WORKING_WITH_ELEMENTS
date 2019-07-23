@@ -24,6 +24,9 @@ class MyTestCase(unittest.TestCase):
         cls.single_inside_multiple_iframe_xpath = '/html/body/section/div/div/iframe'
 
     def setUp(self):
+        if self.driver is not None:
+            self.driver.quit()
+
         self.driver = None
 
     def test_chrome(self):
