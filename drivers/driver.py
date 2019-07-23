@@ -30,16 +30,16 @@ class Driver:
     def _set_driver(self):
 
         if self.browser == 'opera':
+            options = Options()
+            options.binary_location = DriverPath.OPERA_BINARY_PATH
+            print('\nBinary Path: {}'.format(DriverPath.OPERA_BINARY_PATH))
             try:
-                self.driver = webdriver.Opera()
+                self.driver = webdriver.Opera(options=options)
             except WebDriverException as e:
-
-                options = Options()
-                options.binary_location = DriverPath.OPERA_BINARY_PATH
 
                 print('\nPlease note:', e.msg)
                 path = self._get_driver_path()
-                print('Trying to look for a \'geckodriver\' under:\n{}'.format(path))
+                print('Trying to look for a \'operadriver\' under:\n{}'.format(path))
                 self.driver = webdriver.Opera(options=options, executable_path=path)
 
         if self.browser == 'chrome':
