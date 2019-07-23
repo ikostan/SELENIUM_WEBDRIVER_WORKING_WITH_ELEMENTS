@@ -15,6 +15,7 @@ class MyTestCase(unittest.TestCase):
         Runs only one time before all test method
         :return:
         '''
+
         cls.driver = Driver('chrome').get_driver()
 
     def setUp(self):
