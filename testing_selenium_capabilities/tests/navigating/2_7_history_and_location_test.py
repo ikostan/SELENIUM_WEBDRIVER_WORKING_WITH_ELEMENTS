@@ -55,6 +55,8 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(self.test_url, self.driver.current_url)
         self.assertEqual(self.test_title, self.driver.title)
 
+        WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
+
         # Go to main menu and expand it
         self.driver.find_element(By.XPATH,
                                  '/html/body/div[3]/div/div[1]/div/div[2]/ul/li/ul/li[1]/a').click()
@@ -99,7 +101,11 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(self.check_box_demo_title, self.driver.title)
 
     def tearDown(self):
-        self.driver.close()
+        for handle in self.driver.window_handles:
+            self.driver.switch_to.window(handle)
+            self.driver.stop_client()
+            self.driver.close()
+        time.sleep(1)
 
     @classmethod
     def tearDownClass(cls):
