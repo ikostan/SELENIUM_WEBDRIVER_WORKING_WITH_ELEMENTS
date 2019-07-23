@@ -3,6 +3,8 @@ import time
 from drivers.driver import Driver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions
 
 
 class MyTestCase(unittest.TestCase):
@@ -11,6 +13,7 @@ class MyTestCase(unittest.TestCase):
     def setUpClass(cls):
         cls.driver = None
         cls.test_url = 'https://jqueryui.com/droppable/'
+        cls.test_title = 'Droppable | jQuery UI'
 
     def setUp(self):
         if self.driver is not None:
@@ -43,6 +46,7 @@ class MyTestCase(unittest.TestCase):
         self.driver.get(self.test_url)
         self.driver.maximize_window()
 
+        WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.test_title))
         self.assertEqual(self.test_url, self.driver.current_url)
 
         iframe = self.driver.find_element(By.XPATH, '/html/body/div[1]/div[2]/div/div[1]/iframe')
@@ -60,7 +64,9 @@ class MyTestCase(unittest.TestCase):
         time.sleep(2)
 
     def tearDown(self):
+        self.driver.stop_client()
         self.driver.close()
+        time.sleep(1)
 
     @classmethod
     def tearDownClass(cls):
