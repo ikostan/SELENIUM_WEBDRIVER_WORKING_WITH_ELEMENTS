@@ -1,5 +1,8 @@
 import unittest
 from drivers.driver import Driver
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions
+import time
 
 
 class MyTestCase(unittest.TestCase):
@@ -7,6 +10,7 @@ class MyTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.driver = None
+        cls.test_title = 'Example Domain'
         cls.test_url = "http://www.example.com/"
         cls.cookie = {'name': 'foo',
                       'value': 'bar'}
@@ -44,6 +48,9 @@ class MyTestCase(unittest.TestCase):
         self.driver = Driver(browser).get_driver()
         self.driver.get(self.test_url)
         self.driver.maximize_window()
+
+        WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
+
         self.assertEqual(self.test_url, self.driver.current_url)
 
         # Now set the cookie. This one's valid for the entire domain
@@ -54,7 +61,11 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(self.cookie['value'] == self.driver.get_cookies()[0]['value'])
 
     def tearDown(self):
-        self.driver.close()
+        for handle in self.driver.window_handles:
+            self.driver.switch_to.window(handle)
+            self.driver.stop_client()
+            self.driver.close()
+        time.sleep(1)
 
     @classmethod
     def tearDownClass(cls):
