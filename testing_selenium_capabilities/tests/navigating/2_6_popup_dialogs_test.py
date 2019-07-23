@@ -21,6 +21,9 @@ class MyTestCase(unittest.TestCase):
         cls.promt_demo_id = 'prompt-demo'
 
     def setUp(self):
+        if self.driver is not None:
+            self.driver.quit()
+
         self.driver = None
 
     def test_chrome(self):
