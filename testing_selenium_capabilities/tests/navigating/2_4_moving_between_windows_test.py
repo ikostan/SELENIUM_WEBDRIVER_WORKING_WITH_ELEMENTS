@@ -4,6 +4,8 @@ from drivers.driver import Driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions
 
 
 class MyTestCase(unittest.TestCase):
@@ -49,6 +51,8 @@ class MyTestCase(unittest.TestCase):
         self.driver.get(self.url)
         self.driver.maximize_window()
 
+        WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.origin_window_name))
+
         # Get current window handle:
         main_window = self.driver.current_window_handle
 
@@ -63,7 +67,7 @@ class MyTestCase(unittest.TestCase):
 
         # Wait for element to appear.
         # Implemented due to a very slow performance of IE and FireFox.
-        wait = WebDriverWait(self.driver, 10)
+        wait = WebDriverWait(self.driver, 20)
         wait.until(ec.title_is(self.new_window_name))
 
         # Verify new tab name + url:
@@ -87,7 +91,11 @@ class MyTestCase(unittest.TestCase):
         time.sleep(1)
 
     def tearDown(self):
-        self.driver.quit()
+        for handle in self.driver.window_handles:
+            self.driver.switch_to.window(handle)
+            self.driver.stop_client()
+            self.driver.close()
+        time.sleep(1)
 
     @classmethod
     def tearDownClass(cls):
