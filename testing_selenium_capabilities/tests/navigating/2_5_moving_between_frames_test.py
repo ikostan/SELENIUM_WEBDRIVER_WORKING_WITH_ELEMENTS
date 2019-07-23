@@ -56,6 +56,8 @@ class MyTestCase(unittest.TestCase):
         self.driver.get(self.url)
         self.driver.maximize_window()
 
+        WebDriverWait(self.driver, 20).until(ec.title_contains(self.window_name))
+
         # Verify page title + url
         self.assertEqual(self.window_name, self.driver.title)
         self.assertEqual(self.url, self.driver.current_url)
@@ -83,8 +85,9 @@ class MyTestCase(unittest.TestCase):
 
         # detect + switch to multiple iframe
         # implemented with wait due to slow performance of IE and FireFox
-        wait = WebDriverWait(self.driver, 10)
-        wait.until(ec.frame_to_be_available_and_switch_to_it(self.driver.find_element(By.XPATH, self.multiple_frames_xpath)))
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.frame_to_be_available_and_switch_to_it(self.driver.find_element(By.XPATH,
+                                                                                      self.multiple_frames_xpath)))
 
         # detect inner frame + switch to it
         inner_frame = self.driver.find_element(By.XPATH, self.single_inside_multiple_iframe_xpath)
@@ -105,7 +108,11 @@ class MyTestCase(unittest.TestCase):
         time.sleep(1)
 
     def tearDown(self):
-        self.driver.close()
+        for handle in self.driver.window_handles:
+            self.driver.switch_to.window(handle)
+            self.driver.stop_client()
+            self.driver.close()
+        time.sleep(1)
 
     @classmethod
     def tearDownClass(cls):
