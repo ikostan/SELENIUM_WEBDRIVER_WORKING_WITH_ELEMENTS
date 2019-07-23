@@ -10,8 +10,7 @@ class DriverPath:
 
     OPERA_WEB_DRIVER_PATH = '\\drivers\\opera\\win_64\\2.45\\operadriver.exe'
 
-    OPERA_BINARY_PATH = r'C:\\Users\\superadmin\\AppData\\Local\\' \
-                        r'Programs\\Opera\\60.0.3255.95\\opera.exe'
+    OPERA_BINARY_PATH = r'C:\Users\superadmin\AppData\Local\Programs\Opera\60.0.3255.95\opera.exe'
 
 
 
