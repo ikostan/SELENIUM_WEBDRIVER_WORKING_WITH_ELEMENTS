@@ -21,6 +21,9 @@ class MyTestCase(unittest.TestCase):
         cls.check_box_demo_title = 'Selenium Easy - Checkbox demo for automation using selenium'
 
     def setUp(self):
+        if self.driver is not None:
+            self.driver.quit()
+
         self.driver = None
 
     def test_chrome(self):
