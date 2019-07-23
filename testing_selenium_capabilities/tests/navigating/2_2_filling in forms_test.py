@@ -2,6 +2,8 @@ import unittest
 import time
 from selenium.webdriver.common.by import By
 from drivers.driver import Driver
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions
 
 
 class MyTestCase(unittest.TestCase):
@@ -53,6 +55,7 @@ class MyTestCase(unittest.TestCase):
         self.driver.get(self.url)
         self.driver.maximize_window()
 
+        WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.title))
         self.assertEqual(self.title, self.driver.title)
 
         # Set predefine value for each field from
@@ -103,7 +106,9 @@ class MyTestCase(unittest.TestCase):
         time.sleep(1)
 
     def tearDown(self):
+        self.driver.stop_client()
         self.driver.close()
+        time.sleep(1)
 
     @classmethod
     def tearDownClass(cls):
