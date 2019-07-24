@@ -56,10 +56,21 @@ class MyTestCase(unittest.TestCase):
             WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.jscript_alerts_title))
         except TimeoutException as ec:
             print('\n', ec)
-            self.driver = Driver(browser).get_driver()
-            self.driver.maximize_window()
-            self.driver.get(self.jscript_alerts_url)
-            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.jscript_alerts_title))
+            is_webpage_loaded = False
+            while not is_webpage_loaded:
+                is_webpage_loaded = True
+                try:
+                    if self.driver is not None:
+                        self.driver.quit()
+
+                    self.driver = Driver(browser).get_driver()
+                    self.driver.maximize_window()
+                    self.driver.get(self.jscript_alerts_url)
+
+                    WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.jscript_alerts_title))
+                except TimeoutException as ec:
+                    print('\n', ec)
+                    is_webpage_loaded = False
 
         # Verify URL + Title
         self.assertEqual(self.jscript_alerts_url, self.driver.current_url)
