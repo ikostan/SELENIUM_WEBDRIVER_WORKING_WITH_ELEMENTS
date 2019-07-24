@@ -1,5 +1,5 @@
 from drivers.path_config import DriverPath
-from selenium.common.exceptions import WebDriverException
+from selenium.common.exceptions import WebDriverException, SessionNotCreatedException
 from selenium.webdriver.opera.options import Options
 from selenium import webdriver
 import platform
@@ -30,14 +30,21 @@ class Driver:
     def _set_driver(self):
 
         if self.browser == 'opera':
+
             options = Options()
             options.binary_location = DriverPath.OPERA_BINARY_PATH
             print('\nBinary Path: {}'.format(DriverPath.OPERA_BINARY_PATH))
+
             try:
                 self.driver = webdriver.Opera(options=options)
+
+            except SessionNotCreatedException as e:
+                print('\nSessionNotCreatedException:', e.msg)
+                raise
+
             except WebDriverException as e:
 
-                print('\nPlease note:', e.msg)
+                print('\nWebDriverException:', e.msg)
                 path = self._get_driver_path()
                 print('Trying to look for a \'operadriver\' under:\n{}'.format(path))
                 self.driver = webdriver.Opera(options=options, executable_path=path)
@@ -54,6 +61,7 @@ class Driver:
         if self.browser == 'ie':
             try:
                 self.driver = webdriver.Ie()
+
             except WebDriverException as e:
                 print('\nPlease note:', e.msg)
                 path = self._get_driver_path()
