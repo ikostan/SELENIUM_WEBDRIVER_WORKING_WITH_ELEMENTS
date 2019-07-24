@@ -119,9 +119,9 @@ class MyTestCase(unittest.TestCase):
         except TimeoutException as ec:
             print('\n', ec)
             self.driver.switch_to.default_content()
-            self.driver.refresh()
+
             # detect inner frame + switch to it
-            inner_frame = self.driver.find_element(By.XPATH, self.single_inside_multiple_iframe_xpath)
+            #inner_frame = self.driver.find_element(By.XPATH, self.single_inside_multiple_iframe_xpath)
             self.driver.switch_to.frame(inner_frame)
             WebDriverWait(self.driver, 20).until(expected_conditions.element_to_be_clickable((By.XPATH,
                                                                                               self.text_field_xpath)))
