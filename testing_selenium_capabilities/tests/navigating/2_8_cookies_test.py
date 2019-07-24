@@ -49,19 +49,25 @@ class MyTestCase(unittest.TestCase):
             self.driver = Driver(browser).get_driver()
             self.driver.get(self.test_url)
             self.driver.maximize_window()
-            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.test_title))
         except TimeoutException as ec:
             print('\n', ec)
+            is_loaded = False
+            while not is_loaded:
+                is_loaded = True
+                try:
+                    self.tearDown()
+                    self.driver = Driver(browser).get_driver()
+                    self.driver.get(self.test_url)
+                    self.driver.maximize_window()
+                    WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.test_title))
+                except TimeoutException as ec:
+                    print('\n', ec)
+                    is_loaded = False
 
-            if self.driver is not None:
-                self.driver.quit()
-
-            self.driver = Driver(browser).get_driver()
-            self.driver.get(self.test_url)
-            self.driver.maximize_window()
-            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
-
-        self.assertEqual(self.test_url, self.driver.current_url)
+        finally:
+            self.assertEqual(self.test_url, self.driver.current_url)
+            self.assertEqual(self.test_title, self.driver.title)
 
         # Now set the cookie. This one's valid for the entire domain
         self.driver.add_cookie(self.cookie)
