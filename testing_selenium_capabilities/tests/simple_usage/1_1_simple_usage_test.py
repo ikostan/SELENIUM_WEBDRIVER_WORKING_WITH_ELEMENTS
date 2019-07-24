@@ -16,7 +16,7 @@ class SimpleUsage(unittest.TestCase):
         cls.test_name = 'q'
         cls.test_str = "pycon"
         cls.text_message = "No results found."
-        cls.test_title = "Python"
+        cls.test_title = "Welcome to Python.org"
 
     def setUp(self):
         if self.driver is not None:
@@ -45,7 +45,7 @@ class SimpleUsage(unittest.TestCase):
             self.driver = Driver(browser_name).get_driver()  # create a drivers object
             self.driver.get(self.test_url)  # open web browser on test web page
             self.driver.maximize_window()
-            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.test_title))
         except TimeoutException as ec:
             print('\n', ec)
 
@@ -57,7 +57,7 @@ class SimpleUsage(unittest.TestCase):
                     self.driver = Driver(browser_name).get_driver()  # create a drivers object
                     self.driver.get(self.test_url)  # open web browser on test web page
                     self.driver.maximize_window()
-                    WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
+                    WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.test_title))
                 except TimeoutException as ec:
                     print('\n', ec)
                     is_loaded = False
