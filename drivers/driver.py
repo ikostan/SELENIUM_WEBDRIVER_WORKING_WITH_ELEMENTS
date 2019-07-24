@@ -52,6 +52,7 @@ class Driver:
         if self.browser == 'chrome':
             try:
                 self.driver = webdriver.Chrome()
+
             except WebDriverException as e:
                 print('\nPlease note:', e.msg)
                 path = self._get_driver_path()
@@ -71,6 +72,7 @@ class Driver:
         if self.browser == 'mozilla':
             try:
                 self.driver = webdriver.Firefox()
+                
             except WebDriverException as e:
                 print('\nPlease note:', e.msg)
                 path = self._get_driver_path()
