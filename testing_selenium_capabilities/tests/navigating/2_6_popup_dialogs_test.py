@@ -53,7 +53,8 @@ class MyTestCase(unittest.TestCase):
             self.driver = Driver(browser).get_driver()
             self.driver.maximize_window()
             self.driver.get(self.jscript_alerts_url)
-            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.jscript_alerts_title))
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.jscript_alerts_title))
+
         except TimeoutException as ec:
             print('\n', ec)
             is_webpage_loaded = False
@@ -67,14 +68,15 @@ class MyTestCase(unittest.TestCase):
                     self.driver.maximize_window()
                     self.driver.get(self.jscript_alerts_url)
 
-                    WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.jscript_alerts_title))
+                    WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.jscript_alerts_title))
                 except TimeoutException as ec:
                     print('\n', ec)
                     is_webpage_loaded = False
 
-        # Verify URL + Title
-        self.assertEqual(self.jscript_alerts_url, self.driver.current_url)
-        self.assertEqual(self.jscript_alerts_title, self.driver.title)
+        finally:
+            # Verify URL + Title
+            self.assertEqual(self.jscript_alerts_url, self.driver.current_url)
+            self.assertEqual(self.jscript_alerts_title, self.driver.title)
 
         # Test Java Script Alert Box
         self.alert_box_testing()
