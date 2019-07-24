@@ -49,17 +49,26 @@ class MyTestCase(unittest.TestCase):
             self.driver = Driver(browser).get_driver()
             self.driver.get(self.url)
             self.driver.maximize_window()
-            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.origin_window_name))
+            WebDriverWait(self.driver, 20).until(expected_conditions.title_is(self.origin_window_name))
+
         except TimeoutException as ec:
             print('\n', ec)
+            is_loaded = False
+            while not is_loaded:
+                is_loaded = True
+                try:
+                    self.tearDown()
+                    self.driver = Driver(browser).get_driver()
+                    self.driver.get(self.url)
+                    self.driver.maximize_window()
+                    WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.origin_window_name))
+                except TimeoutException as ec:
+                    print('\n', ec)
+                    is_loaded = False
 
-            if self.driver is not None:
-                self.driver.quit()
-
-            self.driver = Driver(browser).get_driver()
-            self.driver.get(self.url)
-            self.driver.maximize_window()
-            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.origin_window_name))
+        finally:
+            self.assertEqual(self.url, self.driver.current_url)
+            self.assertEqual(self.origin_window_name, self.driver.title)
 
         # Get current window handle:
         main_window = self.driver.current_window_handle
@@ -67,7 +76,6 @@ class MyTestCase(unittest.TestCase):
         # Hit on click button and switch to new window:
         btn = self.driver.find_element(By.XPATH,
                                        '/html/body/div[1]/div/div/div/div[2]/div[1]/a/button')
-
         btn.click()
 
         # New tabs will be the last object in window_handles:
@@ -77,15 +85,16 @@ class MyTestCase(unittest.TestCase):
         # Wait for element to appear.
         # Implemented due to a very slow performance of IE and FireFox.
         try:
-            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.new_window_name))
+            WebDriverWait(self.driver, 20).until(expected_conditions.title_is(self.new_window_name))
         except TimeoutException as ec:
             print('\n', ec)
             self.driver.close()
+            time.sleep(1)
             self.driver.switch_to.window(main_window)
             btn.click()
             self.driver.switch_to.window(self.driver.window_handles[-1])
             self.driver.maximize_window()
-            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.new_window_name))
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.new_window_name))
 
         # Verify new tab name + url:
         self.assertEqual(self.new_window_name, self.driver.title)
