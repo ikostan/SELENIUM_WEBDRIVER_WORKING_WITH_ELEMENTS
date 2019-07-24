@@ -1,7 +1,7 @@
 import unittest
 import time
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.wait import WebDriverWait, TimeoutException
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.keys import Keys
 from drivers.driver import Driver
@@ -51,7 +51,13 @@ class MyTestCase(unittest.TestCase):
         self.driver.get(self.test_url)
         self.driver.maximize_window()
 
-        WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
+        try:
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
+        except TimeoutException as ec:
+            print(ec)
+            print('\nTrying to refresh...')
+            self.driver.refresh()
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
 
         # 1. find element by id.
         # If nothing can be found, a NoSuchElementException will be raised.
