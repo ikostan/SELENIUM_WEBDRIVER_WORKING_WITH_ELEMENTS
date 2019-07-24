@@ -90,18 +90,23 @@ class MyTestCase(unittest.TestCase):
             self.driver = Driver(browser).get_driver()
             self.driver.get(self.test_url)
             self.driver.maximize_window()
-            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.test_title))
 
         except TimeoutError as ec:
             print('\n', ec)
 
-            if self.driver is not None:
-                self.driver.quit()
-
-                self.driver = Driver(browser).get_driver()
-                self.driver.get(self.test_url)
-                self.driver.maximize_window()
-                WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
+            is_loaded = False
+            while not is_loaded:
+                is_loaded = True
+                try:
+                    self.tearDown()
+                    self.driver = Driver(browser).get_driver()
+                    self.driver.get(self.test_url)
+                    self.driver.maximize_window()
+                    WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.test_title))
+                except TimeoutError as ec:
+                    print('\n', ec)
+                    is_loaded = False
 
         finally:
             self.assertEqual(self.test_url, self.driver.current_url)
