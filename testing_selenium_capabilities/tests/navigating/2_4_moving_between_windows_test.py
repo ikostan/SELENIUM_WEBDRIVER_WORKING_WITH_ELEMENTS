@@ -61,9 +61,10 @@ class MyTestCase(unittest.TestCase):
         main_window = self.driver.current_window_handle
 
         # Hit on click button and switch to new window:
-        self.driver.find_element(By.XPATH,
-                                 '/html/body/div[1]/div/div/'
-                                 'div/div[2]/div[1]/a/button').click()
+        btn = self.driver.find_element(By.XPATH,
+                                       '/html/body/div[1]/div/div/div/div[2]/div[1]/a/button')
+
+        btn.click()
 
         # New tabs will be the last object in window_handles:
         self.driver.switch_to.window(self.driver.window_handles[-1])
@@ -74,9 +75,12 @@ class MyTestCase(unittest.TestCase):
         try:
             WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.new_window_name))
         except TimeoutException as ec:
-            print(ec)
-            print('\nTrying to refresh...')
-            self.driver.refresh()
+            print('\n', ec)
+            self.driver.close()
+            self.driver.switch_to.window(main_window)
+            btn.click()
+            self.driver.switch_to.window(self.driver.window_handles[-1])
+            self.driver.maximize_window()
             WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.new_window_name))
 
         # Verify new tab name + url:
