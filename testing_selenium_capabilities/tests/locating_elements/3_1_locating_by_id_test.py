@@ -86,12 +86,26 @@ class MyTestCase(unittest.TestCase):
 
     def open_test_web_page(self, browser):
         # Open test web page and verify URL + Title
-        self.driver = Driver(browser).get_driver()
-        self.driver.get(self.test_url)
-        self.driver.maximize_window()
-        time.sleep(1)
-        self.assertEqual(self.test_url, self.driver.current_url)
-        self.assertEqual(self.test_title, self.driver.title)
+        try:
+            self.driver = Driver(browser).get_driver()
+            self.driver.get(self.test_url)
+            self.driver.maximize_window()
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.driver.title))
+
+        except TimeoutError as ec:
+            print('\n', ec)
+
+            if self.driver is not None:
+                self.driver.quit()
+
+                self.driver = Driver(browser).get_driver()
+                self.driver.get(self.test_url)
+                self.driver.maximize_window()
+                WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.driver.title))
+
+        finally:
+            self.assertEqual(self.test_url, self.driver.current_url)
+            self.assertEqual(self.test_title, self.driver.title)
 
     def tearDown(self):
         for handle in self.driver.window_handles:
