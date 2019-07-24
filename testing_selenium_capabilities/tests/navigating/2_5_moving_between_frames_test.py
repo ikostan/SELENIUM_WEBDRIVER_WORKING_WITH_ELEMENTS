@@ -126,7 +126,6 @@ class MyTestCase(unittest.TestCase):
             WebDriverWait(self.driver, 20).until(expected_conditions.element_to_be_clickable((By.XPATH,
                                                                                               self.text_field_xpath)))
 
-
         txt_field = self.driver.find_element(By.XPATH, self.text_field_xpath)
 
         txt_field.send_keys('inner iframe')
