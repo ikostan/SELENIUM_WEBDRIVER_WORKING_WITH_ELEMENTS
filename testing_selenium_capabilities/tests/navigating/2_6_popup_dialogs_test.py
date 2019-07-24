@@ -2,7 +2,7 @@ import unittest
 import time
 from drivers.driver import Driver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.wait import WebDriverWait, TimeoutException
 from selenium.webdriver.support import expected_conditions
 
 
@@ -54,7 +54,13 @@ class MyTestCase(unittest.TestCase):
         if browser == "chrome":
             self.driver.refresh()
 
-        WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.jscript_alerts_title))
+        try:
+            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.jscript_alerts_title))
+        except TimeoutException as ec:
+            print(ec)
+            print('\nTrying to refresh...')
+            self.driver.refresh()
+            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.jscript_alerts_title))
 
         # Verify URL + Title
         self.assertEqual(self.jscript_alerts_url, self.driver.current_url)
@@ -73,7 +79,7 @@ class MyTestCase(unittest.TestCase):
 
         # Open Java Script Alert Box
         self.driver.find_element(By.XPATH, self.jscript_alert_box_btn_xpath).click()
-        alert_box = WebDriverWait(self.driver, 10).until(expected_conditions.alert_is_present())
+        alert_box = WebDriverWait(self.driver, 15).until(expected_conditions.alert_is_present())
 
         # Verify alert box text and close the alert
         self.assertEqual('I am an alert box!', alert_box.text)
@@ -87,7 +93,7 @@ class MyTestCase(unittest.TestCase):
 
         # Open Java Script Confirm Box
         self.driver.find_element(By.XPATH, self.jscript_confirm_box_xpath).click()
-        confirm_box = WebDriverWait(self.driver, 10).until(expected_conditions.alert_is_present())
+        confirm_box = WebDriverWait(self.driver, 15).until(expected_conditions.alert_is_present())
 
         # Verify text >>> Hit OK button
         self.assertTrue('Press a button!' in confirm_box.text)
@@ -101,7 +107,7 @@ class MyTestCase(unittest.TestCase):
 
         # Open alert again
         self.driver.find_element(By.XPATH, self.jscript_confirm_box_xpath).click()
-        confirm_box = WebDriverWait(self.driver, 10).until(expected_conditions.alert_is_present())
+        confirm_box = WebDriverWait(self.driver, 15).until(expected_conditions.alert_is_present())
 
         # Verify text >>> Hit CANCEL button
         self.assertTrue('Press a button!' in confirm_box.text)
@@ -117,7 +123,7 @@ class MyTestCase(unittest.TestCase):
 
         # Open prompt box and verify prompt text
         self.driver.find_element(By.XPATH, self.jscript_alert_box_prompt_xpath).click()
-        prompt_box = WebDriverWait(self.driver, 10).until(expected_conditions.alert_is_present())
+        prompt_box = WebDriverWait(self.driver, 15).until(expected_conditions.alert_is_present())
         self.assertEqual('Please enter your name', prompt_box.text)
         time.sleep(1)
 
@@ -130,7 +136,7 @@ class MyTestCase(unittest.TestCase):
         # Open prompt again
         self.driver.switch_to.default_content()
         self.driver.find_element(By.XPATH, self.jscript_alert_box_prompt_xpath).click()
-        prompt_box = WebDriverWait(self.driver, 10).until(expected_conditions.alert_is_present())
+        prompt_box = WebDriverWait(self.driver, 15).until(expected_conditions.alert_is_present())
 
         # Type name in prompt box
         time.sleep(1)
