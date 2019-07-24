@@ -47,16 +47,17 @@ class MyTestCase(unittest.TestCase):
 
     def using_find_element_func(self, browser):
 
-        self.driver = Driver(browser).get_driver()
-        self.driver.get(self.test_url)
-        self.driver.maximize_window()
-
         try:
+            # Open web browser and verify page title:
+            self.driver = Driver(browser).get_driver()
+            self.driver.get(self.test_url)
+            self.driver.maximize_window()
             WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
         except TimeoutException as ec:
-            print(ec)
-            print('\nTrying to refresh...')
-            self.driver.refresh()
+            print('\n', ec)
+            self.driver = Driver(browser).get_driver()
+            self.driver.get(self.test_url)
+            self.driver.maximize_window()
             WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
 
         # 1. find element by id.
