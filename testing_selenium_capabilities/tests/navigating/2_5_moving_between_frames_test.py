@@ -59,6 +59,10 @@ class MyTestCase(unittest.TestCase):
             WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.window_name))
         except TimeoutException as ec:
             print('\n', ec)
+
+            if self.driver is not None:
+                self.driver.quit()
+
             self.driver = Driver(browser).get_driver()
             self.driver.get(self.url)
             self.driver.maximize_window()
@@ -97,7 +101,7 @@ class MyTestCase(unittest.TestCase):
             wait.until(expected_conditions.frame_to_be_available_and_switch_to_it(self.driver.find_element(By.XPATH,
                                                                                   self.multiple_frames_xpath)))
         except TimeoutException as ec:
-            print(ec)
+            print('\n', ec)
             print('\nTrying to refresh...')
             self.driver.refresh()
             wait.until(expected_conditions.frame_to_be_available_and_switch_to_it(self.driver.find_element(By.XPATH,
@@ -109,7 +113,22 @@ class MyTestCase(unittest.TestCase):
 
         # write text (single iframe) inside text field >>>
         # exit iframe
+        try:
+            WebDriverWait(self.driver, 20).until(expected_conditions.element_to_be_clickable((By.XPATH,
+                                                                                              self.text_field_xpath)))
+        except TimeoutException as ec:
+            print('\n', ec)
+            self.driver.switch_to.default_content()
+            self.driver.refresh()
+            # detect inner frame + switch to it
+            inner_frame = self.driver.find_element(By.XPATH, self.single_inside_multiple_iframe_xpath)
+            self.driver.switch_to.frame(inner_frame)
+            WebDriverWait(self.driver, 20).until(expected_conditions.element_to_be_clickable((By.XPATH,
+                                                                                              self.text_field_xpath)))
+
+
         txt_field = self.driver.find_element(By.XPATH, self.text_field_xpath)
+
         txt_field.send_keys('inner iframe')
         time.sleep(1)
         self.assertEqual('inner iframe', txt_field.get_attribute('value'))
