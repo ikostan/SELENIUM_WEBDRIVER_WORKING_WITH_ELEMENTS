@@ -1,6 +1,6 @@
 import unittest
 from drivers.driver import Driver
-from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.wait import WebDriverWait, TimeoutException
 from selenium.webdriver.support import expected_conditions
 import time
 
@@ -44,12 +44,18 @@ class MyTestCase(unittest.TestCase):
 
     def generic_method(self, browser):
 
-        # Go to the correct domain
-        self.driver = Driver(browser).get_driver()
-        self.driver.get(self.test_url)
-        self.driver.maximize_window()
-
-        WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
+        try:
+            # Go to the correct domain
+            self.driver = Driver(browser).get_driver()
+            self.driver.get(self.test_url)
+            self.driver.maximize_window()
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
+        except TimeoutException as ec:
+            print('\n', ec)
+            self.driver = Driver(browser).get_driver()
+            self.driver.get(self.test_url)
+            self.driver.maximize_window()
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
 
         self.assertEqual(self.test_url, self.driver.current_url)
 
