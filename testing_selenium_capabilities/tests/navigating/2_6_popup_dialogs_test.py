@@ -47,19 +47,18 @@ class MyTestCase(unittest.TestCase):
         self.generic_method(browser)
 
     def generic_method(self, browser):
-        self.driver = Driver(browser).get_driver()
-        self.driver.maximize_window()
-        self.driver.get(self.jscript_alerts_url)
-
-        if browser == "chrome":
-            self.driver.refresh()
 
         try:
+            # Launch webdriver on test web page + maximize window:
+            self.driver = Driver(browser).get_driver()
+            self.driver.maximize_window()
+            self.driver.get(self.jscript_alerts_url)
             WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.jscript_alerts_title))
         except TimeoutException as ec:
-            print(ec)
-            print('\nTrying to refresh...')
-            self.driver.refresh()
+            print('\n', ec)
+            self.driver = Driver(browser).get_driver()
+            self.driver.maximize_window()
+            self.driver.get(self.jscript_alerts_url)
             WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.jscript_alerts_title))
 
         # Verify URL + Title
