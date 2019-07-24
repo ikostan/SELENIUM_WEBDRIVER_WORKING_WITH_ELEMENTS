@@ -1,4 +1,6 @@
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.wait import WebDriverWait, TimeoutException
+from selenium.webdriver.support import expected_conditions
 from drivers.driver import Driver
 import unittest
 import time
@@ -42,6 +44,15 @@ class SimpleUsage(unittest.TestCase):
         self.driver = Driver(browser_name).get_driver()  # create a drivers object
         self.driver.get(self.test_url)  # open web browser on test web page
         self.driver.maximize_window()
+
+        try:
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.driver.title))
+        except TimeoutException as ec:
+            print(ec)
+            print('\nTrying to refresh...')
+            self.driver.refresh()
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.driver.title))
+
         assert self.test_title in self.driver.title  # verify webpage title
 
         elem = self.driver.find_element_by_name(self.test_name)  # finds HTML element by name
