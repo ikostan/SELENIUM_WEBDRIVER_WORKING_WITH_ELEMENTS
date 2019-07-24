@@ -2,9 +2,7 @@ import unittest
 import time
 from drivers.driver import Driver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ec
-from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.wait import WebDriverWait, TimeoutException
 from selenium.webdriver.support import expected_conditions
 
 
@@ -51,7 +49,13 @@ class MyTestCase(unittest.TestCase):
         self.driver.get(self.url)
         self.driver.maximize_window()
 
-        WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.origin_window_name))
+        try:
+            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.origin_window_name))
+        except TimeoutException as ec:
+            print(ec)
+            print('\nTrying to refresh...')
+            self.driver.refresh()
+            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.origin_window_name))
 
         # Get current window handle:
         main_window = self.driver.current_window_handle
@@ -67,8 +71,13 @@ class MyTestCase(unittest.TestCase):
 
         # Wait for element to appear.
         # Implemented due to a very slow performance of IE and FireFox.
-        wait = WebDriverWait(self.driver, 20)
-        wait.until(ec.title_is(self.new_window_name))
+        try:
+            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.new_window_name))
+        except TimeoutException as ec:
+            print(ec)
+            print('\nTrying to refresh...')
+            self.driver.refresh()
+            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.new_window_name))
 
         # Verify new tab name + url:
         self.assertEqual(self.new_window_name, self.driver.title)
