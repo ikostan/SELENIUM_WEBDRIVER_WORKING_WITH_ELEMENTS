@@ -56,18 +56,25 @@ class MyTestCase(unittest.TestCase):
             self.driver.get(self.url)
             self.driver.maximize_window()
             WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.title))
+
         except TimeoutException as ec:
             print('\n', ec)
+            is_loaded = False
+            while not is_loaded:
+                is_loaded = True
+                try:
+                    self.tearDown()
+                    self.driver = Driver(browser).get_driver()
+                    self.driver.get(self.url)
+                    self.driver.maximize_window()
+                    WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.title))
+                except TimeoutException as ec:
+                    print('\n', ec)
+                    is_loaded = False
 
-            if self.driver is not None:
-                self.driver.quit()
-
-            self.driver = Driver(browser).get_driver()
-            self.driver.get(self.url)
-            self.driver.maximize_window()
-            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.title))
-
-        self.assertEqual(self.title, self.driver.title)
+        finally:
+            self.assertEqual(self.url, self.driver.current_url)
+            self.assertEqual(self.title, self.driver.title)
 
         # Set predefine value for each field from
         # 'Create your Google Account' registration form:
