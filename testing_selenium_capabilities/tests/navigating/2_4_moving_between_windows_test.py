@@ -52,6 +52,10 @@ class MyTestCase(unittest.TestCase):
             WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.origin_window_name))
         except TimeoutException as ec:
             print('\n', ec)
+
+            if self.driver is not None:
+                self.driver.quit()
+
             self.driver = Driver(browser).get_driver()
             self.driver.get(self.url)
             self.driver.maximize_window()
