@@ -56,21 +56,26 @@ class MyTestCase(unittest.TestCase):
             self.driver = Driver(browser).get_driver()
             self.driver.get(self.url)
             self.driver.maximize_window()
-            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.window_name))
+            WebDriverWait(self.driver, 20).until(expected_conditions.title_is(self.window_name))
         except TimeoutException as ec:
             print('\n', ec)
+            is_loaded = False
+            while not is_loaded:
+                is_loaded = True
+                try:
+                    self.tearDown()
+                    self.driver = Driver(browser).get_driver()
+                    self.driver.get(self.url)
+                    self.driver.maximize_window()
+                    WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.window_name))
+                except TimeoutException as ec:
+                    print('\n', ec)
+                    is_loaded = False
 
-            if self.driver is not None:
-                self.driver.quit()
-
-            self.driver = Driver(browser).get_driver()
-            self.driver.get(self.url)
-            self.driver.maximize_window()
-            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.window_name))
-
-        # Verify page title + url
-        self.assertEqual(self.window_name, self.driver.title)
-        self.assertEqual(self.url, self.driver.current_url)
+        finally:
+            # Verify page title + url
+            self.assertEqual(self.url, self.driver.current_url)
+            self.assertEqual(self.window_name, self.driver.title)
 
         # detect button
         single_iframe_btn = self.driver.find_element(By.XPATH, self.single_iframe_btn_xpath)
