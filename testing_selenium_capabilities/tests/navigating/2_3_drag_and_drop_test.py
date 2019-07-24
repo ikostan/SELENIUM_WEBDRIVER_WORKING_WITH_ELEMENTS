@@ -48,19 +48,26 @@ class MyTestCase(unittest.TestCase):
             self.driver = Driver(browser).get_driver()
             self.driver.get(self.test_url)
             self.driver.maximize_window()
-            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.test_title))
+            WebDriverWait(self.driver, 20).until(expected_conditions.title_is(self.test_title))
+
         except TimeoutException as ec:
-            print(ec)
+            print('\n', ec)
+            is_loaded = False
+            while not is_loaded:
+                is_loaded = True
+                try:
+                    self.tearDown()
+                    self.driver = Driver(browser).get_driver()
+                    self.driver.get(self.test_url)
+                    self.driver.maximize_window()
+                    WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.test_title))
+                except TimeoutException as ec:
+                    print('\n', ec)
+                    is_loaded = False
 
-            if self.driver is not None:
-                self.driver.quit()
-
-            self.driver = Driver(browser).get_driver()
-            self.driver.get(self.test_url)
-            self.driver.maximize_window()
-            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.test_title))
-
-        self.assertEqual(self.test_url, self.driver.current_url)
+        finally:
+            self.assertEqual(self.test_url, self.driver.current_url)
+            self.assertEqual(self.test_title, self.driver.title)
 
         iframe = self.driver.find_element(By.XPATH, '/html/body/div[1]/div[2]/div/div[1]/iframe')
         self.driver.switch_to.frame(iframe)
@@ -72,9 +79,9 @@ class MyTestCase(unittest.TestCase):
 
         actions = ActionChains(self.driver)
         actions.drag_and_drop(source, target).perform()
-
+        time.sleep(1)
         self.assertEqual("Dropped!", target.text)
-        time.sleep(2)
+        time.sleep(1)
 
     def tearDown(self):
         self.driver.stop_client()
