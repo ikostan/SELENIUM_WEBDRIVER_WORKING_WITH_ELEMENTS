@@ -1,10 +1,7 @@
 import unittest
 from drivers.driver import Driver
 import time
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait, TimeoutException
 from selenium.webdriver.support import expected_conditions
 
@@ -67,7 +64,7 @@ class MyTestCase(unittest.TestCase):
             self.driver.maximize_window()
             WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.test_title))
 
-        except TimeoutError as ec:
+        except TimeoutException as ec:
             print('\n', ec)
 
             is_loaded = False
@@ -79,7 +76,7 @@ class MyTestCase(unittest.TestCase):
                     self.driver.get(self.test_url)
                     self.driver.maximize_window()
                     WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.test_title))
-                except TimeoutError as ec:
+                except TimeoutException as ec:
                     print('\n', ec)
                     is_loaded = False
 
