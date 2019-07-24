@@ -20,7 +20,7 @@ class MyTestCase(unittest.TestCase):
         self.driver.get(self.test_url)
 
         # Explicit wait for page title
-        WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.test_title))
+        WebDriverWait(self.driver, 20).until(expected_conditions.title_is(self.test_title))
 
         # get current url
         url = self.driver.current_url
