@@ -5,7 +5,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver import ActionChains
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.wait import WebDriverWait, TimeoutException
 from selenium.webdriver.support import expected_conditions
 
 
@@ -61,12 +61,26 @@ class MyTestCase(unittest.TestCase):
 
     def open_test_web_page(self, browser):
         # Open test web page and verify URL + Title
-        self.driver = Driver(browser).get_driver()
-        self.driver.get(self.test_url)
-        self.driver.maximize_window()
-        time.sleep(1)
-        self.assertEqual(self.test_url, self.driver.current_url)
-        self.assertEqual(self.test_title, self.driver.title)
+        try:
+            self.driver = Driver(browser).get_driver()
+            self.driver.get(self.test_url)
+            self.driver.maximize_window()
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
+
+        except TimeoutError as ec:
+            print('\n', ec)
+
+            if self.driver is not None:
+                self.driver.quit()
+
+                self.driver = Driver(browser).get_driver()
+                self.driver.get(self.test_url)
+                self.driver.maximize_window()
+                WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
+
+        finally:
+            self.assertEqual(self.test_url, self.driver.current_url)
+            self.assertEqual(self.test_title, self.driver.title)
 
     def tearDown(self):
         self.driver.close()
