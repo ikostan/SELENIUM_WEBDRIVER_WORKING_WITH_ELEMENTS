@@ -45,14 +45,14 @@ class SimpleUsage(unittest.TestCase):
             self.driver = Driver(browser_name).get_driver()  # create a drivers object
             self.driver.get(self.test_url)  # open web browser on test web page
             self.driver.maximize_window()
-            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.driver.title))
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
         except TimeoutException as ec:
             print(ec)
             self.tearDown()
             self.driver = Driver(browser_name).get_driver()  # create a drivers object
             self.driver.get(self.test_url)  # open web browser on test web page
             self.driver.maximize_window()
-            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.driver.title))
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
 
         assert self.test_title in self.driver.title  # verify webpage title
 
