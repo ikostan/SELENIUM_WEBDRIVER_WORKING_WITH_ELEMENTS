@@ -3,7 +3,7 @@ import time
 from drivers.driver import Driver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.wait import WebDriverWait, TimeoutException
 from selenium.webdriver.support import expected_conditions
 
 
@@ -46,7 +46,14 @@ class MyTestCase(unittest.TestCase):
         self.driver.get(self.test_url)
         self.driver.maximize_window()
 
-        WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.test_title))
+        try:
+            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.test_title))
+        except TimeoutException as ec:
+            print(ec)
+            print('\nTrying to refresh...')
+            self.driver.refresh()
+            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.test_title))
+
         self.assertEqual(self.test_url, self.driver.current_url)
 
         iframe = self.driver.find_element(By.XPATH, '/html/body/div[1]/div[2]/div/div[1]/iframe')
