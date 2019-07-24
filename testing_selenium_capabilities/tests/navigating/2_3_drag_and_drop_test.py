@@ -42,16 +42,18 @@ class MyTestCase(unittest.TestCase):
         self.generic_method(browser)
 
     def generic_method(self, browser):
-        self.driver = Driver(browser).get_driver()
-        self.driver.get(self.test_url)
-        self.driver.maximize_window()
 
         try:
+            # Open web browser and verify page title:
+            self.driver = Driver(browser).get_driver()
+            self.driver.get(self.test_url)
+            self.driver.maximize_window()
             WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.test_title))
         except TimeoutException as ec:
             print(ec)
-            print('\nTrying to refresh...')
-            self.driver.refresh()
+            self.driver = Driver(browser).get_driver()
+            self.driver.get(self.test_url)
+            self.driver.maximize_window()
             WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.test_title))
 
         self.assertEqual(self.test_url, self.driver.current_url)
