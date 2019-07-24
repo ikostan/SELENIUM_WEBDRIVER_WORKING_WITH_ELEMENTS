@@ -2,8 +2,8 @@ import unittest
 import time
 from drivers.driver import Driver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.support.wait import WebDriverWait, TimeoutException
+from selenium.webdriver.support import expected_conditions
 
 
 class MyTestCase(unittest.TestCase):
@@ -56,7 +56,13 @@ class MyTestCase(unittest.TestCase):
         self.driver.get(self.url)
         self.driver.maximize_window()
 
-        WebDriverWait(self.driver, 20).until(ec.title_contains(self.window_name))
+        try:
+            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.window_name))
+        except TimeoutException as ec:
+            print(ec)
+            print('\nTrying to refresh...')
+            self.driver.refresh()
+            WebDriverWait(self.driver, 20).until(expected_conditions.title_contains(self.window_name))
 
         # Verify page title + url
         self.assertEqual(self.window_name, self.driver.title)
@@ -86,8 +92,16 @@ class MyTestCase(unittest.TestCase):
         # detect + switch to multiple iframe
         # implemented with wait due to slow performance of IE and FireFox
         wait = WebDriverWait(self.driver, 20)
-        wait.until(ec.frame_to_be_available_and_switch_to_it(self.driver.find_element(By.XPATH,
-                                                                                      self.multiple_frames_xpath)))
+
+        try:
+            wait.until(expected_conditions.frame_to_be_available_and_switch_to_it(self.driver.find_element(By.XPATH,
+                                                                                  self.multiple_frames_xpath)))
+        except TimeoutException as ec:
+            print(ec)
+            print('\nTrying to refresh...')
+            self.driver.refresh()
+            wait.until(expected_conditions.frame_to_be_available_and_switch_to_it(self.driver.find_element(By.XPATH,
+                                                                                  self.multiple_frames_xpath)))
 
         # detect inner frame + switch to it
         inner_frame = self.driver.find_element(By.XPATH, self.single_inside_multiple_iframe_xpath)
