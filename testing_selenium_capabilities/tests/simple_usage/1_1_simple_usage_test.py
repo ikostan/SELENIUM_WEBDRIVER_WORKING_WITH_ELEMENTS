@@ -41,11 +41,10 @@ class SimpleUsage(unittest.TestCase):
 
     def simple_usage_generic_method(self, browser_name):
 
-        self.driver = Driver(browser_name).get_driver()  # create a drivers object
-        self.driver.get(self.test_url)  # open web browser on test web page
-        self.driver.maximize_window()
-
         try:
+            self.driver = Driver(browser_name).get_driver()  # create a drivers object
+            self.driver.get(self.test_url)  # open web browser on test web page
+            self.driver.maximize_window()
             WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.driver.title))
         except TimeoutException as ec:
             print(ec)
