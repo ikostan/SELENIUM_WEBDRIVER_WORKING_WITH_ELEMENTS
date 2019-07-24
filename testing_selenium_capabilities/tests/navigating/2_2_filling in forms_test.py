@@ -2,7 +2,7 @@ import unittest
 import time
 from selenium.webdriver.common.by import By
 from drivers.driver import Driver
-from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.wait import WebDriverWait, TimeoutException
 from selenium.webdriver.support import expected_conditions
 
 
@@ -55,7 +55,14 @@ class MyTestCase(unittest.TestCase):
         self.driver.get(self.url)
         self.driver.maximize_window()
 
-        WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.title))
+        try:
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.title))
+        except TimeoutException as ec:
+            print(ec)
+            print('\nTrying to refresh...')
+            self.driver.refresh()
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.title))
+
         self.assertEqual(self.title, self.driver.title)
 
         # Set predefine value for each field from
