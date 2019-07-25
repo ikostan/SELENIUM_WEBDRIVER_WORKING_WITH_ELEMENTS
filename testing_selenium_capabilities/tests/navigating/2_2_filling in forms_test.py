@@ -50,31 +50,7 @@ class MyTestCase(unittest.TestCase):
 
     def generic_method(self, browser):
 
-        try:
-            # Open web browser and verify page title:
-            self.driver = Driver(browser).get_driver()
-            self.driver.get(self.url)
-            self.driver.maximize_window()
-            WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.title))
-
-        except TimeoutException as ec:
-            print('\n', ec)
-            is_loaded = False
-            while not is_loaded:
-                is_loaded = True
-                try:
-                    self.tearDown()
-                    self.driver = Driver(browser).get_driver()
-                    self.driver.get(self.url)
-                    self.driver.maximize_window()
-                    WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.title))
-                except TimeoutException as ec:
-                    print('\n', ec)
-                    is_loaded = False
-
-        finally:
-            self.assertEqual(self.url, self.driver.current_url)
-            self.assertEqual(self.title, self.driver.title)
+        self.open_web_browser(browser)
 
         # Set predefine value for each field from
         # 'Create your Google Account' registration form:
@@ -122,6 +98,33 @@ class MyTestCase(unittest.TestCase):
         actual = self.driver.find_element_by_name(self.field_name[-1]).get_attribute("type")
         self.assertEqual(expected, actual)
         time.sleep(1)
+
+    def open_web_browser(self, browser):
+        try:
+            # Open web browser and verify page title:
+            self.driver = Driver(browser).get_driver()
+            self.driver.get(self.url)
+            self.driver.maximize_window()
+            WebDriverWait(self.driver, 5).until(expected_conditions.title_contains(self.title))
+
+        except TimeoutException as ec:
+            print('\n', ec)
+            is_loaded = False
+            while not is_loaded:
+                is_loaded = True
+                try:
+                    self.tearDown()
+                    self.driver = Driver(browser).get_driver()
+                    self.driver.get(self.url)
+                    self.driver.maximize_window()
+                    WebDriverWait(self.driver, 5).until(expected_conditions.title_is(self.title))
+                except TimeoutException as ec:
+                    print('\n', ec)
+                    is_loaded = False
+
+        finally:
+            self.assertEqual(self.url, self.driver.current_url)
+            self.assertEqual(self.title, self.driver.title)
 
     def tearDown(self):
         self.driver.stop_client()
