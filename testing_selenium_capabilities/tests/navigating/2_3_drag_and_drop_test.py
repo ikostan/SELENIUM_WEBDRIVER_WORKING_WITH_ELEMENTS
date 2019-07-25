@@ -1,5 +1,6 @@
 import unittest
 import time
+import datetime
 from drivers.driver import Driver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
@@ -79,9 +80,42 @@ class MyTestCase(unittest.TestCase):
 
         actions = ActionChains(self.driver)
         actions.drag_and_drop(source, target).perform()
-        time.sleep(1)
-        self.assertEqual("Dropped!", target.text)
-        time.sleep(1)
+        time.sleep(2)
+        try:
+            self.assertEqual("Dropped!", target.text)
+        except Exception as e:
+            print('\nERROR: ', e.args)
+            self.screen_shot()
+            raise
+
+    def screen_shot(self):
+        """Take a Screen-shot of the webpage when test Failed."""
+        now = datetime.datetime.now()
+        filename = 'screenshot-{}-{}.png'.format(self.driver.name, datetime.datetime.strftime(now, '%Y-%m-%d_%H-%M-%S'))
+        self.driver.save_screenshot(filename)
+        print('\nScreenshot saved as {}'.format(filename))
+
+    @staticmethod
+    def screenshots_collector():
+        '''
+        Collect all screenshots and put them into screenshots directory
+        :return:
+        '''
+        import os
+        import shutil
+
+        screenshots_folder = 'screenshots'
+        if not os.path.exists(os.curdir + '\\screenshots'):
+            os.mkdir(screenshots_folder)
+
+        now = datetime.datetime.now()
+        folder_name = '{}\\screenshots_{}'.format(screenshots_folder, datetime.datetime.strftime(now, '%Y-%m-%d_%H-%M-%S'))
+        os.mkdir(folder_name)
+
+        files = os.listdir(os.curdir)
+        for file in files:
+            if '.png' in str(file):
+                shutil.move(file.split('\\')[-1], os.curdir + '\\' + folder_name)
 
     def tearDown(self):
         self.driver.stop_client()
@@ -90,5 +124,6 @@ class MyTestCase(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        cls.screenshots_collector()
         if cls.driver is not None:
             cls.driver.quit()
