@@ -48,30 +48,7 @@ class MyTestCase(unittest.TestCase):
 
     def generic_method(self, browser):
 
-        try:
-            # Open test web site
-            self.driver = Driver(browser).get_driver()
-            self.driver.get(self.test_url)
-            self.driver.maximize_window()
-            WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.test_title))
-        except TimeoutException as ec:
-            print('\n', ec)
-            is_loaded = False
-            while not is_loaded:
-                is_loaded = True
-                try:
-                    self.tearDown()
-                    self.driver = Driver(browser).get_driver()
-                    self.driver.get(self.test_url)
-                    self.driver.maximize_window()
-                    WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.test_title))
-                except TimeoutException as ec:
-                    print('\n', ec)
-                    is_loaded = False
-
-        finally:
-            self.assertEqual(self.test_url, self.driver.current_url)
-            self.assertEqual(self.test_title, self.driver.title)
+        self.open_web_browser(browser)
 
         # Go to main menu and expand it
         self.driver.find_element(By.XPATH,
@@ -115,6 +92,33 @@ class MyTestCase(unittest.TestCase):
         self.driver.forward()
         time.sleep(1)
         self.assertEqual(self.check_box_demo_title, self.driver.title)
+
+    def open_web_browser(self, browser):
+
+        try:
+            # Open test web site
+            self.driver = Driver(browser).get_driver()
+            self.driver.get(self.test_url)
+            self.driver.maximize_window()
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.test_title))
+        except TimeoutException as ec:
+            print('\n', ec)
+            is_loaded = False
+            while not is_loaded:
+                is_loaded = True
+                try:
+                    self.tearDown()
+                    self.driver = Driver(browser).get_driver()
+                    self.driver.get(self.test_url)
+                    self.driver.maximize_window()
+                    WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.test_title))
+                except TimeoutException as ec:
+                    print('\n', ec)
+                    is_loaded = False
+
+        finally:
+            self.assertEqual(self.test_url, self.driver.current_url)
+            self.assertEqual(self.test_title, self.driver.title)
 
     def tearDown(self):
         for handle in self.driver.window_handles:
