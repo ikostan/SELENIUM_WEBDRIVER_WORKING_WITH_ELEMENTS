@@ -49,19 +49,27 @@ class MyTestCase(unittest.TestCase):
         iframe = self.driver.find_element(By.XPATH, '/html/body/div[1]/div[2]/div/div[1]/iframe')
         self.driver.switch_to.frame(iframe)
 
-        source = self.driver.find_element_by_xpath('//*[@id="draggable"]')
-        target = self.driver.find_element_by_id('droppable')
+        try:
+            source = WebDriverWait(self.driver, 5).until(expected_conditions.presence_of_element_located((By.ID, 'draggable')))
+            target = WebDriverWait(self.driver, 5).until(expected_conditions.presence_of_element_located((By.ID, 'droppable')))
+
+        except Exception as ec:
+            self.take_screen_shot()
+            raise
+
         self.assertEqual("Drop here", target.text)
         time.sleep(2)
 
         actions = ActionChains(self.driver)
         actions.drag_and_drop(source, target).perform()
         time.sleep(2)
+
         try:
             self.assertEqual("Dropped!", target.text)
+
         except Exception as e:
             print('\nERROR: ', e.args)
-            self.screen_shot()
+            self.take_screen_shot()
             raise
 
     def open_web_page(self, browser):
@@ -92,7 +100,7 @@ class MyTestCase(unittest.TestCase):
             self.assertEqual(self.test_url, self.driver.current_url)
             self.assertEqual(self.test_title, self.driver.title)
 
-    def screen_shot(self):
+    def take_screen_shot(self):
         """Take a Screen-shot of the webpage when test Failed."""
         now = datetime.datetime.now()
         filename = 'screenshot-{}-{}.png'.format(self.driver.name, datetime.datetime.strftime(now, '%Y-%m-%d_%H-%M-%S'))
