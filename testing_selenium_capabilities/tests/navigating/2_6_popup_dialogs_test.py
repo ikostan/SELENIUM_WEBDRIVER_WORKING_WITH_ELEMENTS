@@ -4,6 +4,7 @@ from drivers.driver import Driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait, TimeoutException
 from selenium.webdriver.support import expected_conditions
+from selenium.common.exceptions import WebDriverException
 
 
 class MyTestCase(unittest.TestCase):
@@ -48,44 +49,20 @@ class MyTestCase(unittest.TestCase):
 
     def generic_method(self, browser):
 
+        self.open_web_browser(browser)
+
         try:
-            # Launch webdriver on test web page + maximize window:
-            self.driver = Driver(browser).get_driver()
-            self.driver.maximize_window()
-            self.driver.get(self.jscript_alerts_url)
-            WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.jscript_alerts_title))
+            # Test Java Script Alert Box
+            self.alert_box_testing()
 
-        except TimeoutException as ec:
-            print('\n', ec)
-            is_webpage_loaded = False
-            while not is_webpage_loaded:
-                is_webpage_loaded = True
-                try:
-                    if self.driver is not None:
-                        self.driver.quit()
+            # Test Java Script Confirm Box
+            self.confirm_box_testing()
 
-                    self.driver = Driver(browser).get_driver()
-                    self.driver.maximize_window()
-                    self.driver.get(self.jscript_alerts_url)
-
-                    WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.jscript_alerts_title))
-                except TimeoutException as ec:
-                    print('\n', ec)
-                    is_webpage_loaded = False
-
-        finally:
-            # Verify URL + Title
-            self.assertEqual(self.jscript_alerts_url, self.driver.current_url)
-            self.assertEqual(self.jscript_alerts_title, self.driver.title)
-
-        # Test Java Script Alert Box
-        self.alert_box_testing()
-
-        # Test Java Script Confirm Box
-        self.confirm_box_testing()
-
-        # Test Java Script Prompt Box
-        self.prompt_box_testing()
+            # Test Java Script Prompt Box
+            self.prompt_box_testing()
+        except WebDriverException as ec:
+            self.screen_shot()
+            raise
 
     def alert_box_testing(self):
 
@@ -160,6 +137,68 @@ class MyTestCase(unittest.TestCase):
         self.driver.switch_to.default_content()
         self.assertEqual('You have entered \'John Snow\' !', self.driver.find_element(By.ID, self.promt_demo_id).text)
         time.sleep(1)
+
+    def open_web_browser(self, browser):
+
+        try:
+            # Launch webdriver on test web page + maximize window:
+            self.driver = Driver(browser).get_driver()
+            self.driver.maximize_window()
+            self.driver.get(self.jscript_alerts_url)
+            WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.jscript_alerts_title))
+
+        except TimeoutException as ec:
+            print('\n', ec)
+            is_webpage_loaded = False
+            while not is_webpage_loaded:
+                is_webpage_loaded = True
+                try:
+                    if self.driver is not None:
+                        self.driver.quit()
+
+                    self.driver = Driver(browser).get_driver()
+                    self.driver.maximize_window()
+                    self.driver.get(self.jscript_alerts_url)
+
+                    WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.jscript_alerts_title))
+                except TimeoutException as ec:
+                    print('\n', ec)
+                    is_webpage_loaded = False
+
+        finally:
+            # Verify URL + Title
+            self.assertEqual(self.jscript_alerts_url, self.driver.current_url)
+            self.assertEqual(self.jscript_alerts_title, self.driver.title)
+
+    def screen_shot(self):
+        """Take a Screen-shot of the webpage when test Failed."""
+        now = datetime.datetime.now()
+        filename = 'screenshot-{}-{}.png'.format(self.driver.name, datetime.datetime.strftime(now, '%Y-%m-%d_%H-%M-%S'))
+        self.driver.save_screenshot(filename)
+        print('\nScreenshot saved as {}'.format(filename))
+
+    @staticmethod
+    def screenshots_collector():
+        '''
+        Collect all screenshots and put them into screenshots directory
+        :return:
+        '''
+        import os
+        import shutil
+
+        screenshots_folder = 'screenshots'
+        if not os.path.exists(os.curdir + '\\screenshots'):
+            os.mkdir(screenshots_folder)
+
+        now = datetime.datetime.now()
+        folder_name = '{}\\screenshots_{}'.format(screenshots_folder, datetime.datetime.strftime(now, '%Y-%m-%d_%H-%M-%S'))
+
+        files = os.listdir(os.curdir)
+        for file in files:
+            if '.png' in str(file):
+                if not os.path.exists(os.curdir + '\\' + folder_name):
+                    os.mkdir(folder_name)
+                shutil.move(file.split('\\')[-1], os.curdir + '\\' + folder_name)
 
     def tearDown(self):
         for handle in self.driver.window_handles:
