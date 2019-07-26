@@ -71,7 +71,7 @@ class MyTestCase(unittest.TestCase):
             self.driver = Driver(browser).get_driver()
             self.driver.get(self.test_url)
             self.driver.maximize_window()
-            WebDriverWait(self.driver, 20).until(expected_conditions.title_is(self.test_title))
+            WebDriverWait(self.driver, 5).until(expected_conditions.title_is(self.test_title))
 
         except TimeoutException as ec:
             print('\n', ec)
@@ -83,7 +83,7 @@ class MyTestCase(unittest.TestCase):
                     self.driver = Driver(browser).get_driver()
                     self.driver.get(self.test_url)
                     self.driver.maximize_window()
-                    WebDriverWait(self.driver, 15).until(expected_conditions.title_is(self.test_title))
+                    WebDriverWait(self.driver, 5).until(expected_conditions.title_is(self.test_title))
                 except TimeoutException as ec:
                     print('\n', ec)
                     is_loaded = False
