@@ -1,5 +1,6 @@
 import unittest
 import time
+import datetime
 from drivers.driver import Driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait, TimeoutException
@@ -52,7 +53,7 @@ class MyTestCase(unittest.TestCase):
 
         try:
             # Hit on click button and switch to new window:
-            btn = WebDriverWait(self.driver, 10).until(
+            btn = WebDriverWait(self.driver, 5).until(
                 expected_conditions.element_to_be_clickable((By.XPATH,
                                                              '/html/body/div[1]/div/div/div/div[2]/div[1]/a/button')))
             btn.click()
