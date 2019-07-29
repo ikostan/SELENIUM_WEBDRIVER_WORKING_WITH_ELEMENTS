@@ -1,22 +1,33 @@
 import unittest
 import datetime
 from drivers.driver import Driver
-import time
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class MyTestCase(unittest.TestCase):
 
 	@classmethod
 	def setUpClass(cls):
+
 		cls.driver = None
+
 		cls.test_url = 'http://automationpractice.com/index.php'
 		cls.test_title = 'My Store'
+
+		cls.women_text = 'Women'
+		cls.women_link = 'http://automationpractice.com/index.php?id_category=3&controller=category'
+		cls.women_title = 'Women - My Store'
+
+		cls.dresses_text = 'Dres'
+		cls.dresses_link = "http://automationpractice.com/index.php?id_category=8&controller=category"
+		cls.dresses_title = 'Dresses - My Store'
+
+		cls.t_shirts_text = 'T-shirts'
+		cls.t_shirts_link = "http://automationpractice.com/index.php?id_category=5&controller=category"
+		cls.t_shirts_title = 'T-shirts - My Store'
 
 	def setUp(self):
 		if self.driver is not None:
@@ -51,8 +62,41 @@ class MyTestCase(unittest.TestCase):
 
 	def generic_method(self, browser):
 		try:
+			# 1 open web page
 			self.open_test_web_page(browser)
-		except Exception:
+
+			# 2 click on 'Women' button and verify page title
+			women_btn = WebDriverWait(self.driver,
+			                          10).until(EC.element_to_be_clickable((By.LINK_TEXT,
+			                                                                self.women_text)))
+			women_btn.click()
+			WebDriverWait(self.driver,
+			              10).until(EC.title_contains(self.women_title))
+			self.assertEqual(self.women_title, self.driver.title)
+			self.assertEqual(self.women_link, self.driver.current_url)
+
+			# 3
+			dresses_btn = WebDriverWait(self.driver,
+			                            10).until(EC.element_to_be_clickable((By.PARTIAL_LINK_TEXT,
+			                                                                  self.dresses_text)))
+			dresses_btn.click()
+			WebDriverWait(self.driver,
+			              10).until(EC.title_contains(self.dresses_title))
+			self.assertEqual(self.dresses_title, self.driver.title)
+			self.assertEqual(self.dresses_link, self.driver.current_url)
+
+			# 4
+			t_shirts_btn = WebDriverWait(self.driver,
+			                             10).until(EC.element_to_be_clickable((By.LINK_TEXT,
+			                                                                   self.t_shirts_text)))
+			t_shirts_btn.click()
+			WebDriverWait(self.driver,
+			              10).until(EC.title_contains(self.t_shirts_title))
+			self.assertEqual(self.t_shirts_title, self.driver.title)
+			self.assertEqual(self.t_shirts_link, self.driver.current_url)
+
+		except Exception as ec:
+			print('\nERROR: {}'.format(ec))
 			self.take_screen_shot()
 			raise
 
@@ -62,8 +106,7 @@ class MyTestCase(unittest.TestCase):
 		self.driver.get(self.test_url)
 		self.driver.maximize_window()
 
-		WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
-		time.sleep(1)
+		WebDriverWait(self.driver, 15).until(EC.title_contains(self.test_title))
 
 		self.assertEqual(self.test_url, self.driver.current_url)
 		self.assertEqual(self.test_title, self.driver.title)
@@ -104,7 +147,6 @@ class MyTestCase(unittest.TestCase):
 		self.screenshots_collector()
 		self.driver.stop_client()
 		self.driver.close()
-		time.sleep(1)
 
 	@classmethod
 	def tearDownClass(cls):
