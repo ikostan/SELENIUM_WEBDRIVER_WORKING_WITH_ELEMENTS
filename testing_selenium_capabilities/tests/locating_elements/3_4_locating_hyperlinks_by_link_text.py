@@ -26,6 +26,7 @@ class MyTestCase(unittest.TestCase):
 		cls.dresses_title = 'Dresses - My Store'
 
 		cls.t_shirts_text = 'T-shirts'
+		cls.t_shirts_path = '//*[@id="block_top_menu"]/ul/li[3]/a'
 		cls.t_shirts_link = "http://automationpractice.com/index.php?id_category=5&controller=category"
 		cls.t_shirts_title = 'T-shirts - My Store'
 
@@ -35,27 +36,27 @@ class MyTestCase(unittest.TestCase):
 
 		self.driver = None
 
-	#@unittest.skip('not ready')
+	# @unittest.skip('not ready')
 	def test_chrome(self):
 		browser = 'chrome'
 		self.generic_method(browser)
 
-	@unittest.skip('not ready')
+	# @unittest.skip('not ready')
 	def test_ie(self):
 		browser = 'ie'
 		self.generic_method(browser)
 
-	@unittest.skip('not ready')
+	# @unittest.skip('not ready')
 	def test_opera(self):
 		browser = 'opera'
 		self.generic_method(browser)
 
-	@unittest.skip('not ready')
+	# @unittest.skip('not ready')
 	def test_mozilla(self):
 		browser = 'mozilla'
 		self.generic_method(browser)
 
-	@unittest.skip('not ready')
+	# @unittest.skip('not ready')
 	def test_edge(self):
 		browser = 'edge'
 		self.generic_method(browser)
@@ -87,8 +88,8 @@ class MyTestCase(unittest.TestCase):
 
 			# 4
 			t_shirts_btn = WebDriverWait(self.driver,
-			                             10).until(EC.element_to_be_clickable((By.LINK_TEXT,
-			                                                                   self.t_shirts_text)))
+			                             10).until(EC.element_to_be_clickable((By.XPATH,
+			                                                                   self.t_shirts_path)))
 			t_shirts_btn.click()
 			WebDriverWait(self.driver,
 			              10).until(EC.title_contains(self.t_shirts_title))
