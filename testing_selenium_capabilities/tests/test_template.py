@@ -1,7 +1,6 @@
 import unittest
 import datetime
 from drivers.driver import Driver
-import time
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -65,7 +64,7 @@ class MyTestCase(unittest.TestCase):
         self.driver.get(self.test_url)
         self.driver.maximize_window()
 
-        WebDriverWait(self.driver, 15).until(expected_conditions.title_contains(self.test_title))
+        WebDriverWait(self.driver, 15).until(EC.title_contains(self.test_title))
         time.sleep(1)
 
         self.assertEqual(self.test_url, self.driver.current_url)
@@ -107,7 +106,6 @@ class MyTestCase(unittest.TestCase):
         self.screenshots_collector()
         self.driver.stop_client()
         self.driver.close()
-        time.sleep(1)
 
     @classmethod
     def tearDownClass(cls):
