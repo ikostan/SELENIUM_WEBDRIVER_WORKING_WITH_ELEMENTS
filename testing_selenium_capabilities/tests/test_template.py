@@ -52,7 +52,10 @@ class MyTestCase(unittest.TestCase):
     def generic_method(self, browser):
         try:
             self.open_test_web_page(browser)
-        except Exception:
+
+
+        except Exception as ec:
+            print('\nERROR: {}'.format(ec))
             self.take_screen_shot()
             raise
 
@@ -101,7 +104,7 @@ class MyTestCase(unittest.TestCase):
                 shutil.move(file.split('\\')[-1], os.curdir + '\\' + folder_name)
 
     def tearDown(self):
-        self.screenshots_collector(Exception)
+        self.screenshots_collector()
         self.driver.stop_client()
         self.driver.close()
         time.sleep(1)
