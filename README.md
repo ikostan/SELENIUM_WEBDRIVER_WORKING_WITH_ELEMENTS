@@ -38,6 +38,8 @@ https://selenium-python.readthedocs.io
 2. On this page, click the Default Test Runner field.<br/>
 3. Choose the desired test runner:<br/>
 
+For more info please see [Enable Pytest for you project](https://www.jetbrains.com/help/pycharm/pytest.html)
+
 <br/>   
 <div align="center"> 
 <img width="100%" height="100%" src="https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/blob/master/testing_selenium_capabilities/img/py_choosing_test_runner.png" hspace="20">
