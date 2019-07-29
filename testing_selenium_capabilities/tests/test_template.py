@@ -65,7 +65,6 @@ class MyTestCase(unittest.TestCase):
         self.driver.maximize_window()
 
         WebDriverWait(self.driver, 15).until(EC.title_contains(self.test_title))
-        time.sleep(1)
 
         self.assertEqual(self.test_url, self.driver.current_url)
         self.assertEqual(self.test_title, self.driver.title)
