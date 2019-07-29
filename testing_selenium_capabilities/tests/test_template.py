@@ -71,7 +71,8 @@ class MyTestCase(unittest.TestCase):
     def take_screen_shot(self):
         """Take a Screen-shot of the webpage when test Failed."""
         now = datetime.datetime.now()
-        filename = 'screenshot-{}-{}.png'.format(self.driver.name, datetime.datetime.strftime(now, '%Y-%m-%d_%H-%M-%S'))
+        filename = 'screenshot-{}-{}.png'.format(self.driver.name,
+                                                 datetime.datetime.strftime(now, '%Y-%m-%d_%H-%M-%S'))
         self.driver.save_screenshot(filename)
         print('\nScreenshot saved as {}'.format(filename))
 
@@ -88,7 +89,9 @@ class MyTestCase(unittest.TestCase):
             os.mkdir(screenshots_folder)
 
         now = datetime.datetime.now()
-        folder_name = '{}\\screenshots_{}_{}'.format(screenshots_folder, self.driver.name, datetime.datetime.strftime(now, '%Y-%m-%d_%H-%M-%S'))
+        folder_name = '{}\\screenshots_{}_{}'.format(screenshots_folder,
+                                                     self.driver.name,
+                                                     datetime.datetime.strftime(now, '%Y-%m-%d_%H-%M-%S'))
 
         files = os.listdir(os.curdir)
         for file in files:
