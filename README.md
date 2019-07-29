@@ -29,8 +29,14 @@ This is ongoing project. The main goal is to practice with various HTML elements
 In order to instantiate webdriver I use Driver class of my own. For more info please look here:<br/>
 https://github.com/ikostan/SELENIUM_WEBDRIVER_WORKING_WITH_ELEMENTS/tree/master/drivers
 
+### Selenium Documentation:
+https://seleniumhq.github.io/selenium/docs/api/py/api.html
+
 ###  'Selenium with Python' official documentation webpage:
 https://selenium-python.readthedocs.io
+
+### Full pytest documentation:
+http://doc.pytest.org/en/latest/contents.html
 
 ### PyCharm: Choosing Your Testing Framework: <br/>
 
