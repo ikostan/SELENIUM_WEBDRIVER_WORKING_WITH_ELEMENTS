@@ -142,3 +142,5 @@ testing_selenium_capabilities/tests/navigating/screenshots
 .idea/markdown-navigator/profiles_settings.xml
 .idea/markdown-navigator.xml
 .idea/inspectionProfiles/Project_Default.xml
+testing_selenium_capabilities/tests/waits/screenshots/screenshots_chrome_2019-07-29_19-23-38/screenshot-chrome-2019-07-29_19-23-37.png
+testing_selenium_capabilities/tests/waits/screenshots/screenshots_chrome_2019-07-29_19-25-10/screenshot-chrome-2019-07-29_19-25-09.png
