@@ -1,5 +1,6 @@
 import unittest
 import time
+import datetime
 from selenium.webdriver.common.by import By
 from drivers.driver import Driver
 from selenium.webdriver.support.wait import WebDriverWait, TimeoutException
@@ -30,19 +31,35 @@ class MyTestCase(unittest.TestCase):
 
     def test_chrome(self):
         browser = 'chrome'
-        self.generic_method(browser)
+        try:
+            self.generic_method(browser)
+        except Exception:
+            self.take_screen_shot()
+            raise
 
     def test_opera(self):
         browser = 'opera'
-        self.generic_method(browser)
+        try:
+            self.generic_method(browser)
+        except Exception:
+            self.take_screen_shot()
+            raise
 
     def test_mozilla(self):
         browser = 'mozilla'
-        self.generic_method(browser)
+        try:
+            self.generic_method(browser)
+        except Exception:
+            self.take_screen_shot()
+            raise
 
     def test_edge(self):
         browser = 'edge'
-        self.generic_method(browser)
+        try:
+            self.generic_method(browser)
+        except Exception:
+            self.take_screen_shot()
+            raise
 
     def test_ie(self):
         browser = 'ie'
@@ -99,6 +116,13 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(expected, actual)
         time.sleep(1)
 
+    def take_screen_shot(self):
+        """Take a Screen-shot of the webpage when test Failed."""
+        now = datetime.datetime.now()
+        filename = 'screenshot-{}-{}.png'.format(self.driver.name, datetime.datetime.strftime(now, '%Y-%m-%d_%H-%M-%S'))
+        self.driver.save_screenshot(filename)
+        print('\nScreenshot saved as {}'.format(filename))
+
     def open_web_browser(self, browser):
         try:
             # Open web browser and verify page title:
@@ -126,6 +150,30 @@ class MyTestCase(unittest.TestCase):
             self.assertEqual(self.url, self.driver.current_url)
             self.assertEqual(self.title, self.driver.title)
 
+    @staticmethod
+    def screenshots_collector():
+        '''
+        Collect all screenshots and put them into screenshots directory
+        :return:
+        '''
+        import os
+        import shutil
+
+        screenshots_folder = 'screenshots'
+        if not os.path.exists(os.curdir + '\\screenshots'):
+            os.mkdir(screenshots_folder)
+
+        now = datetime.datetime.now()
+        folder_name = '{}\\screenshots_{}'.format(screenshots_folder,
+                                                  datetime.datetime.strftime(now, '%Y-%m-%d_%H-%M-%S'))
+
+        files = os.listdir(os.curdir)
+        for file in files:
+            if '.png' in str(file):
+                if not os.path.exists(os.curdir + '\\' + folder_name):
+                    os.mkdir(folder_name)
+                shutil.move(file.split('\\')[-1], os.curdir + '\\' + folder_name)
+
     def tearDown(self):
         self.driver.stop_client()
         self.driver.close()
@@ -133,5 +181,6 @@ class MyTestCase(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        cls.screenshots_collector()
         if cls.driver is not None:
             cls.driver.quit()
