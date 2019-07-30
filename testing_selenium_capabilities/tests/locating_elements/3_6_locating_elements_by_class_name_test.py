@@ -50,7 +50,7 @@ class MyTestCase(unittest.TestCase):
         try:
             self.open_test_web_page(browser)
             login = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'login')))
-            self.assertEqual(self.login_text, login.text)
+            self.assertEqual(self.login_text, login.text.strip())
 
         except Exception as ec:
             print('\nERROR: {}'.format(ec))
