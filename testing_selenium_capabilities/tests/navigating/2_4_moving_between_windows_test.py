@@ -26,23 +26,43 @@ class MyTestCase(unittest.TestCase):
 
     def test_chrome(self):
         browser = 'chrome'
-        self.generic_method(browser)
+        try:
+            self.generic_method(browser)
+        except Exception:
+            self.take_screen_shot()
+            raise
 
     def test_ie(self):
         browser = 'ie'
-        self.generic_method(browser)
+        try:
+            self.generic_method(browser)
+        except Exception:
+            self.take_screen_shot()
+            raise
 
     def test_opera(self):
         browser = 'opera'
-        self.generic_method(browser)
+        try:
+            self.generic_method(browser)
+        except Exception:
+            self.take_screen_shot()
+            raise
 
     def test_mozilla(self):
         browser = 'mozilla'
-        self.generic_method(browser)
+        try:
+            self.generic_method(browser)
+        except Exception:
+            self.take_screen_shot()
+            raise
 
     def test_edge(self):
         browser = 'edge'
-        self.generic_method(browser)
+        try:
+            self.generic_method(browser)
+        except Exception:
+            self.take_screen_shot()
+            raise
 
     def generic_method(self, browser):
 
@@ -175,5 +195,6 @@ class MyTestCase(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        cls.screenshots_collector()
         if cls.driver is not None:
             cls.driver.quit()
