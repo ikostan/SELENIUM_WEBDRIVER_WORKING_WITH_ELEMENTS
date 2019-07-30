@@ -46,5 +46,36 @@ There are two private methods which might be useful with locators in page object
 
 3. **Locating by XPath**<br/>
     XPath is the language used for locating nodes in an XML document. As HTML can be an implementation of XML (XHTML), Selenium users can leverage this powerful language to target elements in their web applications.<br/>
+    ```python
+    clear_button = driver.find_element_by_xpath("//input[@name='continue'][@type='button']")
+    clear_button = driver.find_element_by_xpath("//form[@id='loginForm']/input[4]")
+    ```
+    
+    [XPath Tutorial - with interactive examples.](http://www.zvon.org/comp/r/tut-XPath_1.html)
     
 4. **Locating Hyperlinks by Link Text**<br/>
+    Use this when you know link text used within an anchor tag. With this strategy, the first element with the link text value matching the location will be returned. If no element has a matching link text attribute, a NoSuchElementException will be raised.<br/>
+    ```python
+    continue_link = driver.find_element_by_link_text('Continue')
+    continue_link = driver.find_element_by_partial_link_text('Conti')
+    ```
+
+5. **Locating Elements by Tag Name**<br/>
+    Use this when you want to locate an element by tag name. With this strategy, the first element with the given tag name will be returned. If no element has a matching tag name, a NoSuchElementException will be raised.<br/>
+    ```python
+    heading1 = driver.find_element_by_tag_name('h1')
+    ```
+
+6. **Locating Elements by Class Name**<br/>
+    Use this when you want to locate an element by class attribute name. With this strategy, the first element with the matching class attribute name will be returned. If no element has a matching class attribute name, a NoSuchElementException will be raised.<br/>
+    ```python
+    content = driver.find_element_by_class_name('content')
+    ```
+
+7. **Locating Elements by CSS Selectors**<br/>
+    Use this when you want to locate an element by CSS selector syntax. With this strategy, the first element with the matching CSS selector will be returned. If no element has a matching CSS selector, a NoSuchElementException will be raised.<br/>
+    ```python
+    content = driver.find_element_by_css_selector('p.content')
+    ```
+    
+    [Selenium Tips: CSS Selectors](https://saucelabs.com/resources/articles/selenium-tips-css-selectors)
