@@ -1,6 +1,6 @@
 # SELENIUM WEBDRIVER - WORKING WITH ELEMENTS 
 
-This is ongoing project. The main goal is to practice with various HTML elements and master Selenium.
+The main goal is to practice with various HTML elements and master Selenium.
 ['Selenium with Python'](https://selenium-python.readthedocs.io/) official documentation is chosen as a general guide.  
 
 <br/>   
