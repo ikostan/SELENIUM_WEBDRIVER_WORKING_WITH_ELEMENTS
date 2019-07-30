@@ -54,6 +54,8 @@ For more info please see [Enable Pytest for you project](https://www.jetbrains.c
 
 ### Problem solving:
 
+- **[How to fix common Selenium errors?](https://www.ultimateqa.com/common-selenium-webdriver-errors-fix/)**<br/>
+
 - **Microsoft webdriver for edge 18 and above:**<br/>
     MS made WebDriver a Windows Feature on Demand (FoD), which ensures that it’s always up to date automatically, and enables some new ways to get Microsoft WebDriver.<br/>
     
